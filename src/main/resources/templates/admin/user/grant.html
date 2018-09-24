@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Jayque Web OS</title>
+    <#include "/header.html">
+</head>
+<body>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- START JQUERY VALIDATION PLUGIN -->
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form id="saveFormValidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/admin/user/save">
+                                    <input type="hidden" id="id" name="id" value="${user.id}">
+                                        <div class="form-group">
+                                            <#list roles as role>
+                                            <div class="col-md-9">
+                                                <div class="checkbox">
+                                                 <label>
+                                                     <#if roleIds?seq_contains(role.id)>
+                                                         <input type="checkbox" value="${role.id}" name="roleIds" checked="checked"> <i></i> ${role.name}
+                                                     <#else>
+                                                         <input type="checkbox" value="${role.id}" name="roleIds"> <i></i> ${role.name}
+                                                     </#if>
+                                                 </label>
+                                                 </div>
+                                            </div>
+                                            </#list>
+                                        </div>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- END JQUERY VALIDATION PLUGIN -->
+
+                    </div>
+        </div>
+        <!-- PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTENT -->
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#saveFormValidate").validate({
+            rules: {},
+            messages: {},
+            submitHandler:function(form){
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "${ctxPath!}/admin/user/grant/" + ${user.id},
+                    data: $(form).serialize(),
+                    success: function(msg){
+                        layer.msg(msg.message, {time: 1000},function(){
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index);
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+</div>
+</body>
+</html>

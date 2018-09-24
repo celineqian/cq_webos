@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Jayque Web OS</title>
+    <#include "/header.html">
+
+</head>
+<body>
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+
+    <!-- START PAGE SIDEBAR -->
+    <div class="page-sidebar">
+        <!-- START X-NAVIGATION -->
+        <ul class="x-navigation">
+            <li class="xn-logo">
+                <a href="#">WEB OS</a>
+                <a href="#" class="x-navigation-control"></a>
+            </li>
+            <li class="xn-title"></li>
+            <li>
+                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text">Home</span></a>
+            </li>
+            <li class="xn-openable">
+                <a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboards</span></a>
+                <ul>
+                <@shiro.hasPermission name="system:user:index">
+                    <li><a href="${ctxPath!}/admin/user/index"><span class="fa fa-user"></span>用户管理</a></li>
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name="system:role:index">
+                    <li><a href="${ctxPath!}/admin/role/index"><span class="fa fa-wrench"></span>角色管理</a></li>
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name="system:resource:index">
+                    <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span>资源管理</a></li>
+                </@shiro.hasPermission>
+                </ul>
+            </li>
+        </ul>
+        <!-- END X-NAVIGATION -->
+    </div>
+    <!-- END PAGE SIDEBAR -->
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <!-- END TOGGLE NAVIGATION -->
+            <!-- SEARCH -->
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+
+            <!-- END SEARCH -->
+            <!-- POWER OFF -->
+            <li class="xn-icon-button pull-right last">
+                <a href="#"><span class="fa fa-power-off"></span></a>
+                <ul class="xn-drop-left">
+                    <li><a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+                </ul>
+            </li>
+            <!-- END POWER OFF -->
+            <!-- LANG BAR -->
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="flag flag-gb"></span></a>
+                <ul class="xn-drop-left xn-drop-white">
+                    <li><a href="#"><span class="flag flag-gb"></span> English</a></li>
+                    <li><a href="#"><span class="flag flag-de"></span> Deutsch</a></li>
+                    <li><a href="#"><span class="flag flag-cn"></span> Chinese</a></li>
+                </ul>
+            </li>
+            <!-- END LANG BAR -->
+        </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+        <ul class="breadcrumb">
+            <li>
+                <span class="fa fa-home"></span> <span class="xn-text">Home</span>
+            </li>
+            <li>
+                <span class="pull-right">Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
+                </span>
+            </li>
+        </ul>
+
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+
+            <!-- START WIDGETS -->
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <!-- START WIDGET CLOCK -->
+                    <div class="widget widget-danger widget-padding-sm">
+                        <div class="widget-big-int plugin-clock">00:00</div>
+                        <div class="widget-subtitle plugin-date">Loading...</div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                        <div class="widget-buttons widget-c3">
+                            <div class="col">
+                                <a href="#"><span class="fa fa-clock-o"></span></a>
+                            </div>
+                            <div class="col">
+                                <a href="#"><span class="fa fa-bell"></span></a>
+                            </div>
+                            <div class="col">
+                                <a href="#"><span class="fa fa-calendar"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET CLOCK -->
+
+                </div>
+                <div class="col-md-4">
+
+                    <!-- START WIDGET MESSAGES -->
+                    <div class="widget widget-default widget-item-icon">
+                        <div class="widget-item-left">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <div class="widget-data">
+                            <div class="widget-int num-count">48</div>
+                            <div class="widget-title">New messages</div>
+                            <div class="widget-subtitle">In your mailbox</div>
+                        </div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                    <!-- END WIDGET MESSAGES -->
+
+                </div>
+                <div class="col-md-4">
+
+                    <!-- START WIDGET REGISTRED -->
+                    <div class="widget widget-default widget-item-icon">
+                        <div class="widget-item-left">
+                            <span class="fa fa-user"></span>
+                        </div>
+                        <div class="widget-data">
+                            <div class="widget-int num-count">3</div>
+                            <div class="widget-title">Registred users</div>
+                            <div class="widget-subtitle">On your website</div>
+                        </div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                    <!-- END WIDGET REGISTRED -->
+
+                </div>
+
+            </div>
+            <!-- END WIDGETS -->
+
+        </div>
+        <!-- PAGE CONTENT WRAPPER -->
+
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" width="100%" height="100%" src="${ctxPath!}/admin/welcome" frameborder="0" data-id="index_v1.html" seamless></iframe>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+            <div class="mb-content">
+                <p>Are you sure you want to log out?</p>
+                <p>Press No if you want to continue work. Press Yes to logout current user.</p>
+            </div>
+            <div class="mb-footer">
+                <form action="/admin/logout" id="logout">
+                    <div class="pull-right">
+                        <a href="javascript:document:logout.submit();" class="btn btn-success btn-lg">Yes</a>
+                        <button class="btn btn-default btn-lg mb-control-close">No</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MESSAGE BOX-->
+</body>
+</html>
