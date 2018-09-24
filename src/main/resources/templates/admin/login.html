@@ -23,24 +23,24 @@
             </div>
         </#if>
         <div class="login-body">
-            <div class="login-title"><strong>Log In</strong> to your account</div>
+            <div class="login-title"><strong><@spring.message "LogIn"/></strong><@spring.message "toyouraccount"/></div>
             <form action="/admin/login" method="post" class ="form-horizontal" commandName="user" id="jvalidate">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Username" id="username" name="username"/>
+                        <input type="text" class="form-control" placeholder="<@spring.message 'Username'/>" id="username" name="username"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="password" class="form-control" placeholder="Password" id="password" name="password"/>
+                        <input type="password" class="form-control" placeholder="<@spring.message 'Password'/>" id="password" name="password"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+                        <a href="#" class="btn btn-link btn-block"><@spring.message "Forgotpwd"/></a>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-info btn-block" type="submit">Log In</button>
+                        <button class="btn btn-info btn-block" type="submit"><@spring.message "LogIn"/></button>
                     </div>
                 </div>
 
@@ -48,12 +48,12 @@
         </div>
         <div class="login-footer">
             <div class="pull-left">
-                &copy; 2017 Jayque Tech Solutions Office Web OS by CQ
+                <@spring.message "copyright"/>
             </div>
             <div class="pull-right">
-                <a href="#">About</a> |
-                <a href="#">Privacy</a> |
-                <a href="#">Contact Us</a>
+                <a href="#"><@spring.message "About"/></a> |
+                <a href="#"><@spring.message "Privacy"/></a> |
+                <a href="#"><@spring.message "ContactUs"/></a>
             </div>
         </div>
     </div>
