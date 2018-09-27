@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +49,6 @@ public class UserController extends BaseController {
         Page<User> page = userService.findAll(builder.generateSpecification(), getPageRequest());
         return page;
     }
-
-
 
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
@@ -103,7 +98,6 @@ public class UserController extends BaseController {
     public String grant(@PathVariable Integer id, ModelMap map){
         User user = userService.find(id);
         map.put("user" , user);
-
         Set<Role> set = user.getRoles();
         List<Integer> roleIds = new ArrayList<Integer>();
         for (Role role: set){
@@ -117,7 +111,7 @@ public class UserController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/grant/{id}", method = RequestMethod.POST)
-    public JsonResult grant(@PathVariable Integer id, String[] roleIds, ModelMap map){
+    public JsonResult grant(@PathVariable Integer id,String[] roleIds, ModelMap map) {
         try{
             userService.grant(id, roleIds);
         }catch (Exception e){

@@ -69,10 +69,10 @@
     <!-- END X-NAVIGATION VERTICAL -->
     <ul class="breadcrumb">
             <li>
-                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text">Home</span></a>
+                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
             </li>
             <li>
-                <span class="fa fa-user-circle-o"></span> Resource Management
+                <span class="fa fa-user-circle-o"></span>&nbsp;<@spring.message "ResourceM"/>
             </li>
             <li>
                 <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
@@ -88,7 +88,7 @@
                 <div class="row">
                     <div class="panel-body">
                         <p><@shiro.hasPermission name="system:resource:add">
-                            <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
+                            <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
                         </@shiro.hasPermission>
                         </p>
                     </div>

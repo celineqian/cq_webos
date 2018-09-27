@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * <p>
- *     用户表
+ *     用户
  * </p>
  *
  * Created by Celine on 30/06/2017.

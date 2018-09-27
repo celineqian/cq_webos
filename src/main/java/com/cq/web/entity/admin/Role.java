@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * <p>
- *     角色表
+ *     角色
  * </p>
  *
  * Created by Celine on 30/06/2017.

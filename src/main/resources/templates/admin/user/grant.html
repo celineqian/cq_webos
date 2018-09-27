@@ -16,7 +16,7 @@
                         <!-- START JQUERY VALIDATION PLUGIN -->
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form id="saveFormValidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/admin/user/save">
+                                <form id="saveFormValidate" role="form" method="post" class="form-horizontal">
                                     <input type="hidden" id="id" name="id" value="${user.id}">
                                         <div class="form-group">
                                             <#list roles as role>
@@ -41,7 +41,6 @@
                             </div>
                         </div>
                         <!-- END JQUERY VALIDATION PLUGIN -->
-
                     </div>
         </div>
         <!-- PAGE CONTENT WRAPPER -->
@@ -56,7 +55,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctxPath!}/admin/user/grant/" + ${user.id},
+                    url: '${ctxPath!}/admin/role/grant/' + ${user.id},
                     data: $(form).serialize(),
                     success: function(msg){
                         layer.msg(msg.message, {time: 1000},function(){

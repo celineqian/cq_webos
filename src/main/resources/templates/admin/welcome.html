@@ -5,5 +5,17 @@
     <title>Insert title here</title>
 </head>
 <body>
+<div class="container-fluid" style="padding: 0 !important;">
+    <div class="row">
+        <div class="col-sm-12">2222
+            <#list noticeList as nc>
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                ${notice.content}
+            </div>
+        </#list>
+        </div>
+    </div>
+</div>
 </body>
 </html>

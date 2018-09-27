@@ -67,7 +67,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
     public void grant(Integer id, String[] roleIds) {
         User user = userRepository.findOne(id);
         Assert.notNull(user,"[WARNING!] User does not exist!");
-        Assert.state(!"celine".equals(user.getUserName()),"[WARNING!] Administrator can not edit role");
+//        Assert.state(!"celine".equals(user.getUserName()),"[WARNING!] Administrator can not edit role");
         Role role;
         Set<Role> roles = new HashSet<Role>();
         if(roleIds != null) {
