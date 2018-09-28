@@ -6,6 +6,12 @@ insert into `t_role_resource`(`role_id`,`resource_id`) values (1,1),(1,2),(1,3),
 
 
 
+DROP DATABASE IF EXISTS cqweb;
+CREATE DATABASE IF NOT EXISTS cqweb DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+USE cqweb;
+
+
 #UPDATE
 insert into t_user (`id`,`create_date`,`delete_status`,`description`,`email`,`locked`,`nick_name`,`password`,`telephone`,`update_date`,`user_name`) values (1,'2017-07-16 15:41:50',0,'管理员','celine@gmail.com',0,'CQ','3931MUEQD1939MQMLM4AISPVNE','9909990','2017-07-17 15:41:50','celine'),(2,'2017-07-16 15:41:50',0,'用户','user@gmail.com',0,'User','3931MUEQD1939MQMLM4AISPVNE','0000000','2017-07-17 15:41:50','celine');
 insert into t_role (`id`,`create_date`,`description`,`name`,`role_key`,`status`,`update_date`) values (1,'2017-07-16 15:41:50','管理员','Admin','administrator',0,'2017-07-16 15:41:50'),(2,'2017-07-16 15:41:50','用户','User','user',0,'2017-07-16 15:41:50');

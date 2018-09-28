@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- META SECTION -->
-    <title>Jayque Web OS</title>
+    <title>CQ WebOS</title>
     <#include "/header.html">
 </head>
 <body>
@@ -57,11 +57,13 @@
                     dataType: "json",
                     url: '${ctxPath!}/admin/role/grant/' + ${user.id},
                     data: $(form).serialize(),
-                    success: function(msg){
-                        layer.msg(msg.message, {time: 1000},function(){
+                    success : function(msg) {
+                        layer.msg(msg.message, {time: 2000},function(){
                             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                             parent.layer.close(index);
                         });
+                    },
+                    error : function(r,s,m) {
                     }
                 });
             }
