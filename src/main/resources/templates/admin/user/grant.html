@@ -14,9 +14,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- START JQUERY VALIDATION PLUGIN -->
-                        <div class="panel panel-default">
                             <div class="panel-body">
-                                <form id="saveFormValidate" role="form" method="post" class="form-horizontal">
+                                <form id="frm" role="form" method="post" class="form-horizontal">
                                     <input type="hidden" id="id" name="id" value="${user.id}">
                                         <div class="form-group">
                                             <#list roles as role>
@@ -38,7 +37,6 @@
                                         </div>
                                 </form>
                             </div>
-                            </div>
                         </div>
                         <!-- END JQUERY VALIDATION PLUGIN -->
                     </div>
@@ -46,20 +44,20 @@
         <!-- PAGE CONTENT WRAPPER -->
     </div>
     <!-- END PAGE CONTENT -->
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-        $("#saveFormValidate").validate({
+        $("#frm").validate({
             rules: {},
             messages: {},
             submitHandler:function(form){
                 $.ajax({
-                    type: "POST",
-                    dataType: "json",
                     url: '${ctxPath!}/admin/role/grant/' + ${user.id},
+                    type: "post",
+                    dataType: "json",
                     data: $(form).serialize(),
                     success : function(msg) {
                         layer.msg(msg.message, {time: 2000},function(){
-                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         });
                     },
@@ -70,6 +68,5 @@
         });
     });
 </script>
-</div>
 </body>
 </html>
