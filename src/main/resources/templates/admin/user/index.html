@@ -59,7 +59,7 @@
             <li class="xn-icon-button pull-right last">
                 <a href="#"><span class="fa fa-power-off"></span></a>
                 <ul class="xn-drop-left">
-                    <li><a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Sign Out</a></li>
+                    <li><a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span>&nbsp;<@spring.message "SignOut"/></a></li>
                 </ul>
             </li>
             <!-- END POWER OFF -->
@@ -82,7 +82,6 @@
         <div class="page-content-wrap">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
                         <div class="panel-body">
                             <@shiro.hasPermission name="system:user:add">
                                 <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
@@ -96,9 +95,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
+            </div>
             </div>
 
         </div>
@@ -120,8 +118,8 @@
             <div class="mb-footer">
                 <form action="/admin/logout" id="logout">
                     <div class="pull-right">
-                        <a href="javascript:document:logout.submit();" class="btn btn-success btn-lg">Yes</a>
-                        <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        <a href="javascript:document:logout.submit();" class="btn btn-success btn-lg"><@spring.message "Yes"/></a>
+                        <button class="btn btn-default btn-lg mb-control-close"><@spring.message "No"/></button>
                     </div>
                 </form>
             </div>
