@@ -8,6 +8,7 @@ import com.cq.web.service.admin.ResourceService;
 import com.cq.web.service.admin.RoleService;
 import com.cq.web.vo.ZtreeView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
