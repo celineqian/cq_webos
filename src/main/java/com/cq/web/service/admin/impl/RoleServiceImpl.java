@@ -51,7 +51,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
 
     }
 
-
     public void delete(Integer id){
         Role role = find(id);
         Assert.state(!"administrator".equals(role.getRoleKey()),"[WARNING!] Administrator Role can not be deleted!");

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>User List</title>
+    <title>Notice List</title>
     <#include "/header.html">
 </head>
 <body>
@@ -31,10 +31,13 @@
         <@shiro.hasPermission name="system:resource:index">
         <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
     </@shiro.hasPermission>
-    </ul>
-    </li>
-    </ul>
-    <!-- END X-NAVIGATION -->
+    <@shiro.hasPermission name="system:notice:index">
+    <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
+</@shiro.hasPermission>
+</ul>
+</li>
+</ul>
+<!-- END X-NAVIGATION -->
 </div>
 <!-- END PAGE SIDEBAR -->
 
@@ -71,7 +74,7 @@
             <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
         </li>
         <li>
-            <span class="fa fa-user-circle-o"></span> User Management
+            <span class="fa fa-user-circle-o"></span> Notice Management
         </li>
         <li>
                 <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
@@ -138,7 +141,7 @@
             //必须设置，不然request.getParameter获取不到请求参数
             contentType: "application/x-www-form-urlencoded",
             //获取数据的Servlet地址
-            url: "${ctxPath}/admin/user/list",
+            url: "${ctxPath}/admin/notice/list",
             //表格显示条纹
             striped: true,
             //启动分页
@@ -164,56 +167,25 @@
             //数据列
             columns: [
                 {title: "ID", field: "id", sortable: true},
-                {title: "用户名", field: "userName"},
-                {title: "所属角色", field: "roles",
-                    formatter: function(value, row, index) {
-                        var r = "";
-                        $(value).each(function (index,role){
-                            r = r + "【" + role.name + "】";
-                        });
-                        return r;
-                    }},
-                {title: "昵称", field: "nickName"},
-                {title: "电话", field: "telephone"},
-                {title: "邮箱", field: "email"},
-                {title: "状态", sortable: true, field: "deleteStatus",
-                    formatter: function (value, row, index) {
-                        if (value == '0')
-                            return '<span class="label label-default">未删除</span>';
-                        return '<span class="label label-danger">已删除</span>';
-                    }},
-                {title: "锁定", field: "locked",
-                    formatter: function (value, row, index) {
-                        if (value == '0')
-                            return '<span class="label label-default">未锁定</span>';
-                        return '<span class="label label-danger">已锁定</span>';
-                    }},
-                {title: "创建时间", field: "createDate",
+                {title: "标题", field: "title"},
+                {title: "内容", field: "content"},
+                {title: "创建时间", field: "createTime",
                     formatter: function (value, row, index) {
                         var date = new Date(value);
                         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                         return date.getFullYear() + '-' + M + date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
                     }},
-                {title: "更新时间", field: "updateDate",
-                    formatter: function (value, row, index) {
-                        var date = new Date(value);
-                        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                        return date.getFullYear() + '-' + M + date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
-                    }}
-                ,{
+                {
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        var operateHtml = '<@shiro.hasPermission name="system:user:view"><button class="btn btn-warning btn-xs" type="button" onclick="view(\''+row.id+'\')">查看</button>&nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
                         operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.id+'\')">权限</button></@shiro.hasPermission>';
                         return operateHtml;
                     }
                 }]
         });
     });
-
 
 
     function edit(id){
@@ -223,25 +195,13 @@
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],
-            content: '${ctxPath}/admin/user/edit/'+ id,
+            content: '${ctxPath}/admin/notice/edit/'+ id,
             end: function(index){
                 $('#tableList').bootstrapTable("refresh");
             }
         });
     }
-    function view(id){
-        layer.open({
-            type: 2,
-            title: '用户查看',
-            shadeClose: true,
-            shade: false,
-            area: ['893px', '600px'],
-            content: '${ctxPath!}/admin/user/view/'+ id,
-            end: function(index){
-                $('#tableList').bootstrapTable("refresh");
-            }
-        });
-    }
+
     function add(){
         layer.open({
             type: 2,
@@ -249,20 +209,7 @@
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],
-            content: '${ctxPath!}/admin/user/add',
-            end: function(index){
-                $('#tableList').bootstrapTable("refresh");
-            }
-        });
-    }
-    function grant(id){
-        layer.open({
-            type: 2,
-            title: '关联角色',
-            shadeClose: true,
-            shade: false,
-            area: ['893px', '400px'],
-            content: '${ctxPath!}/admin/user/grant/' + id,
+            content: '${ctxPath!}/admin/notice/add',
             end: function(index){
                 $('#tableList').bootstrapTable("refresh");
             }
@@ -273,7 +220,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "${ctxPath!}/admin/user/delete/" + id,
+                url: "${ctxPath!}/admin/notice/delete/" + id,
                 success: function(msg){
                     layer.msg(msg.message, {time: 1000},function(){
                         $('#tableList').bootstrapTable("refresh");
