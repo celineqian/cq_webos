@@ -34,6 +34,9 @@
                 <@shiro.hasPermission name="system:resource:index">
                     <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
                 </@shiro.hasPermission>
+				<@shiro.hasPermission name="system:notice:index">
+                    <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-users"></span>Notice Manager</a></li>
+                </@shiro.hasPermission>
                 </ul>
             </li>
         </ul>
