@@ -5,6 +5,7 @@ import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.NoticeRespository;
 import com.cq.web.service.admin.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  * @Author Celine Q
  * @Create 1/10/2018 3:53 PM
  **/
+@Service
 public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implements NoticeService {
 
     @Autowired
@@ -23,7 +25,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implement
             Notice n = noticeRespository.findOne(notice.getId());
             notice.setContent(n.getContent());
             notice.setTitle(n.getTitle());
-            notice.setType(n.getType());
             update(notice);
         }else{
             notice.setCreateTime(new Date());

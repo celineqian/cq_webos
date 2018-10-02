@@ -24,19 +24,19 @@
                 <ul>
                     <@shiro.hasPermission name="system:user:index">
                     <li><a href="${ctxPath!}/admin/user/index"><span class="fa fa-user"></span><@spring.message "UserM"/></a></li>
-                </@shiro.hasPermission>
-                <@shiro.hasPermission name="system:role:index">
-            <li><a href="${ctxPath!}/admin/role/index"><span class="fa fa-wrench"></span><@spring.message "RoleM"/></a></li>
-        </@shiro.hasPermission>
-        <@shiro.hasPermission name="system:resource:index">
-        <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
-    </@shiro.hasPermission>
-    <@shiro.hasPermission name="system:notice:index">
-    <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
-</@shiro.hasPermission>
-</ul>
-</li>
-</ul>
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="system:role:index">
+                    <li><a href="${ctxPath!}/admin/role/index"><span class="fa fa-wrench"></span><@spring.message "RoleM"/></a></li>
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="system:resource:index">
+                    <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="system:notice:index">
+                    <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-warning"></span><@spring.message "NoticeM"/></a></li>
+                    </@shiro.hasPermission>
+                </ul>
+            </li>
+        </ul>
 <!-- END X-NAVIGATION -->
 </div>
 <!-- END PAGE SIDEBAR -->

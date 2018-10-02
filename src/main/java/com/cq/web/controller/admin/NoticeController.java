@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 
 /**
  * @author: Celine Q
@@ -52,6 +54,7 @@ public class NoticeController extends BaseController {
         return "admin/notice/form";
     }
 
+
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
     public JsonResult edit(Notice notice, ModelMap map){
@@ -62,5 +65,7 @@ public class NoticeController extends BaseController {
         }
         return JsonResult.success();
     }
+
+
 }
 

@@ -30,11 +30,6 @@ public class Notice extends BaseEntity {
     private String title;
 
     /**
-     * 公告类型
-     */
-    private Integer type;
-
-    /**
      * 公告内容
      */
     private String content;
@@ -64,14 +59,6 @@ public class Notice extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getContent() {
