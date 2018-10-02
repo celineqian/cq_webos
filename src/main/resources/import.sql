@@ -5,7 +5,7 @@ USE cqweb;
 
 
 #UPDATE
-insert into t_user (`id`,`create_date`,`delete_status`,`description`,`email`,`locked`,`nick_name`,`password`,`telephone`,`update_date`,`user_name`) values (1,'2017-07-16 15:41:50',0,'管理员','celine@gmail.com',0,'CQ','3931MUEQD1939MQMLM4AISPVNE','9909990','2017-07-17 15:41:50','celine'),(2,'2017-07-16 15:41:50',0,'用户','user@gmail.com',0,'User','3931MUEQD1939MQMLM4AISPVNE','0000000','2017-07-17 15:41:50','celine');
+insert into t_user (`id`,`create_date`,`delete_status`,`description`,`email`,`locked`,`nick_name`,`password`,`telephone`,`update_date`,`user_name`) values (1,'2017-07-16 15:41:50',0,'管理员','celine@gmail.com',0,'CQ','3931MUEQD1939MQMLM4AISPVNE','9909990','2017-07-17 15:41:50','celine'),(2,'2017-07-16 15:41:50',0,'用户','user@gmail.com',0,'User','3931MUEQD1939MQMLM4AISPVNE','0000000','2017-07-17 15:41:50','user');
 insert into t_role (`id`,`create_date`,`description`,`name`,`role_key`,`status`,`update_date`) values (1,'2017-07-16 15:41:50','管理员','Admin','administrator',0,'2017-07-16 15:41:50'),(2,'2017-07-16 15:41:50','用户','User','user',0,'2017-07-16 15:41:50');
 insert into `t_resource`(`id`,`create_date`,`description`,`icon`,`is_hidden`,`level`,`name`,`sort`,`source_key`,`source_url`,`type`,`update_date`,`parent_id`) values
 (1,'2017-01-10 13:56:51','用户管理',NULL,0,2,'用户管理',1,'system:user:index','/admin/user/index',1,'2017-01-10 13:59:01',NULL),

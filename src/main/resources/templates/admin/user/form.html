@@ -125,7 +125,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "${ctx!}/admin/user/edit",
+                url: "${ctxPath!}/admin/user/edit",
                 data: $(form).serialize(),
                 success: function(msg){
                     layer.msg(msg.message, {time: 1000},function(){
