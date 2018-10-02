@@ -27,13 +27,13 @@ public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implement
             notice.setTitle(n.getTitle());
             update(notice);
         }else{
-            notice.setCreateTime(new Date());
+            notice.setCreateDate(new Date());
             save(notice);
         }
     }
 
     @Override
     public BaseRepository<Notice, Integer> getBaseRespository() {
-        return this.getBaseRespository();
+        return this.noticeRespository;
     }
 }

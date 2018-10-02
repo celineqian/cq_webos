@@ -87,20 +87,19 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="panel-body">
-                        <@shiro.hasPermission name="system:user:add">
+                        <@shiro.hasPermission name="system:notice:add">
                         <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
-                    </@shiro.hasPermission>
-                </div>
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-actions" id="tableList"></table>
+                        </@shiro.hasPermission>
+                   </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-actions" id="tableList"></table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
             </div>
         </div>
 
@@ -169,7 +168,7 @@
                 {title: "ID", field: "id", sortable: true},
                 {title: "标题", field: "title"},
                 {title: "内容", field: "content"},
-                {title: "创建时间", field: "createTime",
+                {title: "创建时间", field: "createDate",
                     formatter: function (value, row, index) {
                         var date = new Date(value);
                         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -179,8 +178,8 @@
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
+                        var operateHtml = '<@shiro.hasPermission name="system:notice:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:notice:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
                     }
                 }]
@@ -191,7 +190,7 @@
     function edit(id){
         layer.open({
             type: 2,
-            title: '用户修改',
+            title: '通知修改',
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],
@@ -205,7 +204,7 @@
     function add(){
         layer.open({
             type: 2,
-            title: '用户添加',
+            title: '通知添加',
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],

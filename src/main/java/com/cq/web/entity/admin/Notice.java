@@ -38,12 +38,12 @@ public class Notice extends BaseEntity {
      * 创建时间
      */
     @JSONField(format = "dd-MM-yyyy: HH:mm:ss")
-    private Date createTime;
+    private Date createDate;
 
     /**
      * 创建人
      */
-    private User user;
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -69,20 +69,21 @@ public class Notice extends BaseEntity {
         this.content = content;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
 
