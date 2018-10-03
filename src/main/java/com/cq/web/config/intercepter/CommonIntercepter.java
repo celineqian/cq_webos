@@ -21,13 +21,15 @@ public class CommonIntercepter implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request,
-                           HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
+                           HttpServletResponse response, Object o, ModelAndView modelAndView)
+            throws Exception {
         request.setAttribute("ctxPath",request.getContextPath());
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request,
-                                HttpServletResponse response, Object o, Exception e) throws Exception {
+                                HttpServletResponse response, Object o, Exception e)
+            throws Exception {
 
     }
 }

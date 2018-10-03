@@ -2,8 +2,6 @@ package com.cq.web.controller.admin;
 
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
-import com.cq.web.config.shiro.ShiroKit;
-import com.cq.web.config.shiro.ShiroUser;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.User;
 import org.apache.shiro.SecurityUtils;
@@ -35,12 +33,12 @@ public class LoginController extends BaseController {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,ModelMap model){
         try{
-            Subject subject = SecurityUtils.getSubject();
+            Subject currentUser = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-            subject.login(token);
+            currentUser.login(token);
 
-            User u = (User)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-            LogManager.me().executeLog(LogTaskFactory.loginLog(u.getId(), getIp()));
+            User user = (User)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), getIp()));
 
             return REDIRECT + "/admin/index";
         } catch (AuthenticationException e) {

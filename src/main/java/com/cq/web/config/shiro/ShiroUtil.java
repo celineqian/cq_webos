@@ -1,5 +1,6 @@
 package com.cq.web.config.shiro;
 
+import com.cq.web.entity.admin.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -7,7 +8,7 @@ import org.apache.shiro.subject.Subject;
  * @Author Celine Q
  * @Create 3/10/2018 3:08 PM
  **/
-public class ShiroKit {
+public class ShiroUtil {
 
     /**
      * 获取当前 Subject
@@ -23,12 +24,11 @@ public class ShiroKit {
      *
      * @return
      */
-    public static ShiroUser getUser() {
+    public static User getUser() {
         if (isGuest()) {
             return null;
         } else {
-                ShiroUser u = (ShiroUser)getSubject().getPrincipals().getPrimaryPrincipal();
-                return u;
+                return (User)getSubject().getPrincipals().getPrimaryPrincipal();
         }
     }
 

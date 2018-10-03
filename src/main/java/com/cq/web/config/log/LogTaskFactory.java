@@ -1,11 +1,11 @@
 package com.cq.web.config.log;
 
+import com.cq.web.config.web.SpringContextHelper;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.repository.admin.LoginLogRespository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.TimerTask;
 
@@ -13,11 +13,11 @@ import java.util.TimerTask;
  * @Author Celine Q
  * @Create 3/10/2018 11:59 AM
  **/
-@Component
+
 public class LogTaskFactory {
 
     @Autowired
-    private static LoginLogRespository loginLogRespository;
+    private static LoginLogRespository loginLogRespository = SpringContextHelper.getBean(LoginLogRespository.class);
 
     private static Logger logger = LoggerFactory.getLogger(LogManager.class);
 
