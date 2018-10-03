@@ -1,5 +1,6 @@
-package com.cq.web.config.app;
+package com.cq.web.config.web;
 
+import com.cq.web.config.intercepter.CommonIntercepter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

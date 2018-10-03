@@ -20,7 +20,6 @@ public class AdminIndexController {
 
     @RequestMapping(value = {"/admin/", "/admin/index"})
     public String index(){
-
         return "admin/index";
     }
 

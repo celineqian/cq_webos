@@ -45,7 +45,7 @@ public class ResourceController extends BaseController {
     @ResponseBody
     public Page<Resource> list() {
         SimpleSpecificationBuilder<Resource> builder = new SimpleSpecificationBuilder<Resource>();
-        String searchText = request.getParameter("searchText");
+        String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
         }

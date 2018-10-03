@@ -23,9 +23,9 @@ public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implement
     public void saveOrUpdate(Notice notice) {
         if(notice.getId()!=null){
             Notice n = noticeRespository.findOne(notice.getId());
-            notice.setContent(n.getContent());
-            notice.setTitle(n.getTitle());
-            update(notice);
+            n.setContent(notice.getContent());
+            n.setTitle(notice.getTitle());
+            update(n);
         }else{
             notice.setCreateDate(new Date());
             save(notice);

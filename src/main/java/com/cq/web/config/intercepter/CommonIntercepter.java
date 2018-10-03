@@ -1,4 +1,4 @@
-package com.cq.web.config.app;
+package com.cq.web.config.intercepter;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

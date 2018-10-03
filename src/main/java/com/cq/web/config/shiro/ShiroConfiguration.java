@@ -37,7 +37,6 @@ public class ShiroConfiguration {
     }
 
 
-
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -85,8 +84,6 @@ public class ShiroConfiguration {
         AppRealm realm = new AppRealm();
         return realm;
     }
-
-
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){

@@ -1,4 +1,4 @@
-package com.cq.web.config.app;
+package com.cq.web.config.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

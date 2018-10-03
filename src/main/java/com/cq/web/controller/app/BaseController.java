@@ -1,8 +1,8 @@
 package com.cq.web.controller.app;
 
 import com.cq.web.common.DateEditor;
+import com.cq.web.config.web.HttpKit;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 /**
@@ -19,12 +20,23 @@ import java.util.Date;
  */
 public class BaseController {
 
-    @Autowired
-    protected HttpServletRequest request;
+    protected static String SUCCESS = "SUCCESS";
+    protected static String ERROR = "ERROR";
 
-    @Autowired
-    protected HttpServletResponse response;
+    protected static String REDIRECT = "redirect:";
+    protected static String FORWARD = "forward:";
 
+    protected HttpServletResponse getHttpServletResponse() {
+        return HttpKit.getResponse();
+    }
+
+    protected HttpServletRequest getHttpServletRequest() {
+        return HttpKit.getRequest();
+    }
+
+    protected HttpSession getSession() {
+        return HttpKit.getRequest().getSession();
+    }
 
     @InitBinder
     protected void initBinder(WebDataBinder webDataBinder) {
@@ -40,8 +52,8 @@ public class BaseController {
         int size = 10;
         Sort sort = null;
         try {
-            String sortName = request.getParameter("sortName");
-            String sortOrder = request.getParameter("sortOrder");
+            String sortName = getHttpServletRequest().getParameter("sortName");
+            String sortOrder = getHttpServletRequest().getParameter("sortOrder");
             if(StringUtils.isNoneBlank(sortName) && StringUtils.isNoneBlank(sortOrder)){
                 if(sortOrder.equalsIgnoreCase("desc")){
                     sort = new Sort(Direction.DESC, sortName);
@@ -49,8 +61,8 @@ public class BaseController {
                     sort = new Sort(Direction.ASC, sortName);
                 }
             }
-            page = Integer.parseInt(request.getParameter("pageNumber")) - 1;
-            size = Integer.parseInt(request.getParameter("pageSize"));
+            page = Integer.parseInt(getHttpServletRequest().getParameter("pageNumber")) - 1;
+            size = Integer.parseInt(getHttpServletRequest().getParameter("pageSize"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,8 +79,8 @@ public class BaseController {
         int page = 0;
         int size = 10;
         try {
-            String sortName = request.getParameter("sortName");
-            String sortOrder = request.getParameter("sortOrder");
+            String sortName = getHttpServletRequest().getParameter("sortName");
+            String sortOrder = getHttpServletRequest().getParameter("sortOrder");
             if(StringUtils.isNoneBlank(sortName) && StringUtils.isNoneBlank(sortOrder)){
                 if(sortOrder.equalsIgnoreCase("desc")){
                     sort.and(new Sort(Direction.DESC, sortName));
@@ -76,13 +88,14 @@ public class BaseController {
                     sort.and(new Sort(Direction.ASC, sortName));
                 }
             }
-            page = Integer.parseInt(request.getParameter("pageNumber")) - 1;
-            size = Integer.parseInt(request.getParameter("pageSize"));
+            page = Integer.parseInt(getHttpServletRequest().getParameter("pageNumber")) - 1;
+            size = Integer.parseInt(getHttpServletRequest().getParameter("pageSize"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         PageRequest pageRequest = new PageRequest(page, size, sort);
         return pageRequest;
     }
+
 
 }

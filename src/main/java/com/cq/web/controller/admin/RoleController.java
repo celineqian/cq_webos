@@ -33,7 +33,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Page<Role> list() {
         SimpleSpecificationBuilder<Role> builder = new SimpleSpecificationBuilder<Role>();
-        String searchText = request.getParameter("searchText");
+        String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
             builder.addOr("description", SpecificationOperator.Operator.likeAll.name(), searchText);

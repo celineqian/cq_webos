@@ -42,7 +42,7 @@ public class NoticeController extends BaseController {
     @ResponseBody
     public Page<Notice> list(){
         SimpleSpecificationBuilder<Notice> builder = new SimpleSpecificationBuilder<Notice>();
-        String searchText = request.getParameter("searchText");
+        String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
         }

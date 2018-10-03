@@ -15,7 +15,6 @@ public class ShiroTagConfig {
     @Autowired
     private freemarker.template.Configuration configuration;
 
-
     @PostConstruct
     public void setSharedVariable() {
         try {
@@ -24,7 +23,6 @@ public class ShiroTagConfig {
             e.printStackTrace();
         }
     }
-
 }
 
 

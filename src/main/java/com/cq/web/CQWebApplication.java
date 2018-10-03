@@ -13,7 +13,6 @@ public class CQWebApplication {
 
 	private static org.slf4j.Logger logger = LoggerFactory.getLogger(CQWebApplication.class);
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(CQWebApplication.class, args);
 		logger.debug("启动成功");

@@ -42,7 +42,7 @@ public class UserController extends BaseController {
     @ResponseBody
     public Page<User> list() {
         SimpleSpecificationBuilder<User> builder = new SimpleSpecificationBuilder<User>();
-        String searchText = request.getParameter("searchText");
+        String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("nickName", SpecificationOperator.Operator.likeAll.name(), searchText);
         }

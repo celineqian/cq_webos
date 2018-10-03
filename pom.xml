@@ -58,6 +58,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Freemarker Shiro Tag-->
 		<dependency>
 			<groupId>net.mingsoft</groupId>
 			<artifactId>shiro-freemarker-tags</artifactId>
