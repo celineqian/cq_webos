@@ -39,9 +39,7 @@ INSERT INTO t_resource VALUES
 (18,'2018-10-03 11:21:54','通知编辑',NULL,0,3,'通知编辑',2,'system:notice:edit','/admin/notice/edit*',2,'2018-10-03 14:12:31',16);
 (19,'2018-10-03 11:21:54','通知删除',NULL,0,3,'通知删除',3,'system:notice:deleteBatch','/admin/notice/deleteBatch',2,'2018-10-03 14:12:31',16);
 (20,'2018-10-03 11:21:54','登陆日志管理',NULL,0,2,'登录日志管理',1,'system:loginlog:index','/admin/loginlog/index',1,'2018-10-03 14:12:31',NULL);
-(21,'2018-10-03 11:21:54','登陆日志添加',NULL,0,3,'登录日志添加',1,'system:loginlog:add','/admin/loginlog/add',2,'2018-10-03 14:12:31',20);
-(22,'2018-10-03 11:21:54','登陆日志修改',NULL,0,3,'登录日志修改',2,'system:loginlog:edit','/admin/loginlog/edit*',2,'2018-10-03 14:12:31',20);
-(23,'2018-10-03 11:21:54','登陆日志删除',NULL,0,3,'登录日志修改',3,'system:loginlog:deleteBatch','/admin/loginlog/deleteBatch*',2,'2018-10-03 14:12:31',20);
+(21,'2018-10-03 11:21:54','登陆日志删除',NULL,0,3,'登录日志修改',1,'system:loginlog:delete','/admin/loginlog/delete*',2,'2018-10-03 14:12:31',20);
 
 -- ----------------------------
 -- Records of t_user_role
