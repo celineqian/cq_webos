@@ -16,7 +16,6 @@ public class ShiroUtil {
      * @return Subject
      */
     public static Subject getSubject() {
-
         return SecurityUtils.getSubject();
     }
 
@@ -28,7 +27,7 @@ public class ShiroUtil {
         if (isGuest()) {
             return null;
         } else {
-                return (User)getSubject().getPrincipals().getPrimaryPrincipal();
+            return (User)getSubject().getPrincipals().getPrimaryPrincipal();
         }
     }
 

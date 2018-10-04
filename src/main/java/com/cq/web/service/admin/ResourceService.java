@@ -22,4 +22,5 @@ public interface ResourceService extends BaseService<Resource, Integer> {
      * @param resource
      */
     void saveOrUpdate(Resource resource);
+
 }

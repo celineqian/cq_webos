@@ -54,6 +54,8 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/admin/logout" , method = RequestMethod.GET)
     public String logout (){
         Subject subject = SecurityUtils.getSubject();
+        User user = (User)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        LogManager.me().executeLog(LogTaskFactory.exitLog(user.getId(),getIp()));
         subject.logout();
         return REDIRECT + "/admin/login";
     }

@@ -1,6 +1,8 @@
 package com.cq.web.config.shiro;
 
 import com.cq.web.common.MD5Utils;
+import com.cq.web.config.log.LogManager;
+import com.cq.web.config.log.LogTaskFactory;
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.entity.admin.User;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.cq.web.config.web.HttpKit.getIp;
 
 /**
  * Created by Celine on 14/07/2017.
@@ -63,19 +67,23 @@ public class AppRealm extends AuthorizingRealm {
         String username = (String)token.getPrincipal();
         User user = userRepository.findByUserName(username);
         String password = new String((char[]) token.getCredentials());
-
         if(user == null) {
-            throw new UnknownAccountException("账号或密码不正确");
+            String msg = "账号或密码不正确";
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
+            throw new UnknownAccountException(msg);
         }
         // 密码错误
         if (!MD5Utils.md5(password).equals(user.getPassword())) {
-            throw new IncorrectCredentialsException("密码不正确");
+            String msg = "密码不正确";
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
+            throw new IncorrectCredentialsException(msg);
         }
         // 账号锁定
         if (user.getLocked() == 1) {
-            throw new LockedAccountException("账号已被锁定,请联系管理员");
+            String msg = "账号已被锁定,请联系管理员";
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
+            throw new LockedAccountException(msg);
         }
-
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
         return info;
     }
