@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
  * @Author Celine Q
  * @Create 3/10/2018 3:15 PM
  **/
-public class HttpKit {
+public class HttpUtil {
 
 
     public static String getIp(){
-        return HttpKit.getRequest().getRemoteHost();
+        return HttpUtil.getRequest().getRemoteHost();
     }
 
     /**
@@ -31,6 +31,6 @@ public class HttpKit {
      */
     public static HttpServletRequest getRequest() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        return new WafRequestWrapper(request);
+        return new WebAppFirewallWrapper(request);
     }
 }

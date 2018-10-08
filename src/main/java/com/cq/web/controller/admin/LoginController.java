@@ -2,9 +2,9 @@ package com.cq.web.controller.admin;
 
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
+import com.cq.web.config.shiro.ShiroUtil;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.User;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import static com.cq.web.config.web.HttpKit.getIp;
+import static com.cq.web.config.web.HttpUtil.getIp;
 
 
 /**
@@ -33,11 +33,11 @@ public class LoginController extends BaseController {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,ModelMap model){
         try{
-            Subject currentUser = SecurityUtils.getSubject();
+            Subject currentUser = ShiroUtil.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username,password);
             currentUser.login(token);
 
-            User user = (User)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            User user = ShiroUtil.getUser();
             LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), getIp()));
 
             return REDIRECT + "/admin/index";
@@ -53,10 +53,8 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/admin/logout" , method = RequestMethod.GET)
     public String logout (){
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        LogManager.me().executeLog(LogTaskFactory.exitLog(user.getId(),getIp()));
-        subject.logout();
+        LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroUtil.getUser().getId(),getIp()));
+        ShiroUtil.getSubject().logout();
         return REDIRECT + "/admin/login";
     }
 

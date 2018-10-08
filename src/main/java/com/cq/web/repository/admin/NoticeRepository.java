@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create: 2018-09-25 20:49
  **/
 @Repository
-public interface NoticeRespository extends BaseRepository<Notice, Integer> {
+public interface NoticeRepository extends BaseRepository<Notice, Integer> {
 }

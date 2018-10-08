@@ -3,7 +3,6 @@ package com.cq.web.controller.admin;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.Notice;
-import com.cq.web.repository.admin.NoticeRespository;
 import com.cq.web.service.admin.NoticeService;
 import com.cq.web.service.specification.SimpleSpecificationBuilder;
 import com.cq.web.service.specification.SpecificationOperator;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 
 /**
@@ -34,7 +31,6 @@ public class NoticeController extends BaseController {
 
     @RequestMapping(value = { "/", "/index" })
     public String index() {
-
         return "admin/notice/index";
     }
 

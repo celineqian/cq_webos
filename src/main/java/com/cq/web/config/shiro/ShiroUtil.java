@@ -1,6 +1,7 @@
 package com.cq.web.config.shiro;
 
 import com.cq.web.entity.admin.User;
+import com.cq.web.entity.admin.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -50,4 +51,22 @@ public class ShiroUtil {
     }
 
 
+    /**
+     * 验证当前用户是否属于以下任意一个角色。
+     * @param roleNames
+     * @return
+     */
+    public static boolean hasAnyRoles(String roleNames) {
+        boolean hasAnyRole = false;
+        Subject subject = getSubject();
+        if(subject != null && roleNames != null && roleNames.length() > 0) {
+            for (String role : roleNames.split(",")){
+                if(subject.hasRole(role.trim())){
+                    hasAnyRole = true;
+                    break;
+                }
+            }
+        }
+        return hasAnyRole;
+    }
 }

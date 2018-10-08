@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @Create 3/10/2018 12:07 PM
  **/
 @Repository
-public interface LoginLogRespository extends BaseRepository<LoginLog,Integer> {
+public interface LoginLogRepository extends BaseRepository<LoginLog,Integer> {
 }

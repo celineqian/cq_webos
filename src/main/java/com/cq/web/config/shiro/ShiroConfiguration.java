@@ -36,7 +36,6 @@ public class ShiroConfiguration {
         return new LifecycleBeanPostProcessor();
     }
 
-
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -80,8 +79,8 @@ public class ShiroConfiguration {
     }
 
     @Bean
-    public AppRealm myShiroRealm(){
-        AppRealm realm = new AppRealm();
+    public ShiroRealm myShiroRealm(){
+        ShiroRealm realm = new ShiroRealm();
         return realm;
     }
 

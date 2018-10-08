@@ -75,7 +75,6 @@ public class User extends BaseEntity {
     @JSONField(format = "dd-MM-yyyy HH:mm:ss")
     private Date createDate;
 
-
     /**
      * 更新时间
      */

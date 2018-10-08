@@ -3,7 +3,7 @@ package com.cq.web.controller.admin;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.LoginLog;
-import com.cq.web.repository.admin.LoginLogRespository;
+import com.cq.web.repository.admin.LoginLogRepository;
 import com.cq.web.service.specification.SimpleSpecificationBuilder;
 import com.cq.web.service.specification.SpecificationOperator;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginLogController extends BaseController {
 
     @Autowired
-    private LoginLogRespository loginLogRespository;
+    private LoginLogRepository loginLogRepository;
 
     @RequestMapping(value = { "/", "/index" })
     public String index() {
@@ -40,7 +40,7 @@ public class LoginLogController extends BaseController {
         if(StringUtils.isNotBlank(searchText)){
             builder.add("nickName", SpecificationOperator.Operator.likeAll.name(), searchText);
         }
-        Page<LoginLog> page = loginLogRespository.findAll(builder.generateSpecification(), getPageRequest());
+        Page<LoginLog> page = loginLogRepository.findAll(builder.generateSpecification(), getPageRequest());
         return page;
     }
 
@@ -48,7 +48,7 @@ public class LoginLogController extends BaseController {
     @ResponseBody
     public JsonResult delete() {
         try {
-            loginLogRespository.deleteAll();
+            loginLogRepository.deleteAll();
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.failure(e.getMessage());

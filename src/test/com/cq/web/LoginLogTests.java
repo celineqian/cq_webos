@@ -1,7 +1,7 @@
 package com.cq.web;
 
 import com.cq.web.entity.admin.LoginLog;
-import com.cq.web.repository.admin.LoginLogRespository;
+import com.cq.web.repository.admin.LoginLogRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Date;
 public class LoginLogTests {
 
     @Autowired
-    private LoginLogRespository respository;
+    private LoginLogRepository respository;
 
     @Test
     public void loginLogSavetest(){

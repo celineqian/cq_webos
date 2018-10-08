@@ -2,7 +2,7 @@ package com.cq.web.service.admin.impl;
 
 import com.cq.web.entity.admin.Notice;
 import com.cq.web.repository.BaseRepository;
-import com.cq.web.repository.admin.NoticeRespository;
+import com.cq.web.repository.admin.NoticeRepository;
 import com.cq.web.service.admin.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ import java.util.Date;
 public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implements NoticeService {
 
     @Autowired
-    private NoticeRespository noticeRespository;
+    private NoticeRepository noticeRepository;
 
     @Override
     public void saveOrUpdate(Notice notice) {
         if(notice.getId()!=null){
-            Notice n = noticeRespository.findOne(notice.getId());
+            Notice n = noticeRepository.findOne(notice.getId());
             n.setContent(notice.getContent());
             n.setTitle(notice.getTitle());
             update(n);
@@ -34,6 +34,6 @@ public class NoticeServiceImpl extends BaseServiceImpl<Notice,Integer> implement
 
     @Override
     public BaseRepository<Notice, Integer> getBaseRespository() {
-        return this.noticeRespository;
+        return this.noticeRepository;
     }
 }

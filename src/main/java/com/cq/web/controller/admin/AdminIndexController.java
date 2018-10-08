@@ -1,7 +1,7 @@
 package com.cq.web.controller.admin;
 
 import com.cq.web.entity.admin.Notice;
-import com.cq.web.repository.admin.NoticeRespository;
+import com.cq.web.repository.admin.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +16,7 @@ import java.util.List;
 public class AdminIndexController {
 
     @Autowired
-    private NoticeRespository noticeRespository;
+    private NoticeRepository noticeRepository;
 
     @RequestMapping(value = {"/admin/", "/admin/index"})
     public String index(){
@@ -25,7 +25,7 @@ public class AdminIndexController {
 
     @RequestMapping(value = {"/admin/welcome"})
     public String welcome(ModelMap map){
-        List<Notice> list = noticeRespository.findAll();
+        List<Notice> list = noticeRepository.findAll();
         map.put("noticeList",list);
         return "admin/welcome";
     }

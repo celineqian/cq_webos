@@ -11,20 +11,20 @@ import java.util.Map;
  * @Author Celine Q
  * @Create 3/10/2018 3:27 PM
  **/
-public class WafRequestWrapper extends HttpServletRequestWrapper {
+public class WebAppFirewallWrapper extends HttpServletRequestWrapper {
 
     private boolean filterXSS = true;
 
     private boolean filterSQL = true;
 
-    public WafRequestWrapper(HttpServletRequest request, boolean filterXSS, boolean filterSQL) {
+    public WebAppFirewallWrapper(HttpServletRequest request, boolean filterXSS, boolean filterSQL) {
         super(request);
         this.filterXSS = filterXSS;
         this.filterSQL = filterSQL;
     }
 
 
-    public WafRequestWrapper(HttpServletRequest request) {
+    public WebAppFirewallWrapper(HttpServletRequest request) {
         this(request, true, true);
     }
 
@@ -121,10 +121,10 @@ public class WafRequestWrapper extends HttpServletRequestWrapper {
         }
         String tmpStr = rawValue;
         if (this.filterXSS) {
-            tmpStr = WafKit.stripXSS(rawValue);
+            tmpStr = WebAppFirewallUtil.stripXSS(rawValue);
         }
         if (this.filterSQL) {
-            tmpStr = WafKit.stripSqlInjection(tmpStr);
+            tmpStr = WebAppFirewallUtil.stripSqlInjection(tmpStr);
         }
         return tmpStr;
     }

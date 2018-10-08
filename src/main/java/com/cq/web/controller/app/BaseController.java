@@ -1,7 +1,7 @@
 package com.cq.web.controller.app;
 
 import com.cq.web.common.DateEditor;
-import com.cq.web.config.web.HttpKit;
+import com.cq.web.config.web.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.PageRequest;
@@ -27,15 +27,15 @@ public class BaseController {
     protected static String FORWARD = "forward:";
 
     protected HttpServletResponse getHttpServletResponse() {
-        return HttpKit.getResponse();
+        return HttpUtil.getResponse();
     }
 
     protected HttpServletRequest getHttpServletRequest() {
-        return HttpKit.getRequest();
+        return HttpUtil.getRequest();
     }
 
     protected HttpSession getSession() {
-        return HttpKit.getRequest().getSession();
+        return HttpUtil.getRequest().getSession();
     }
 
     @InitBinder

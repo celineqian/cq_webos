@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * @Author Celine Q
  * @Create 3/10/2018 3:34 PM
  **/
-public class WafKit {
+public class WebAppFirewallUtil {
 
     /**
      * @Description 过滤XSS脚本内容

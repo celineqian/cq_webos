@@ -19,13 +19,13 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.cq.web.config.web.HttpKit.getIp;
+import static com.cq.web.config.web.HttpUtil.getIp;
 
 /**
  * Created by Celine on 14/07/2017.
  */
 @Component
-public class AppRealm extends AuthorizingRealm {
+public class ShiroRealm extends AuthorizingRealm {
 
 
     @Autowired
@@ -33,7 +33,7 @@ public class AppRealm extends AuthorizingRealm {
 
 
 
-    public AppRealm(){
+    public ShiroRealm(){
         super(new AllowAllCredentialsMatcher());
         setAuthenticationTokenClass(UsernamePasswordToken.class);
         //FIXME: 暂时禁用Cache
