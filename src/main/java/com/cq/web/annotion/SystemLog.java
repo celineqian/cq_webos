@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-public @interface BusinessLog {
+public @interface SystemLog {
 
     /**
      * 业务名称,例如："修改菜单"

@@ -5,6 +5,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author Celine Q
@@ -32,5 +35,22 @@ public class HttpUtil {
     public static HttpServletRequest getRequest() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return new WebAppFirewallWrapper(request);
+    }
+
+
+    /**
+     * 获取所有请求的值
+     * @return
+     */
+    public static Map<String, String> getRequestParameters() {
+        HashMap<String, String> values = new HashMap<>();
+        HttpServletRequest request = HttpUtil.getRequest();
+        Enumeration enums = request.getParameterNames();
+        while(enums.hasMoreElements()){
+            String paramName = (String) enums.nextElement();
+            String paramValue = request.getParameter(paramName);
+            values.put(paramName,paramValue);
+        }
+        return values;
     }
 }
