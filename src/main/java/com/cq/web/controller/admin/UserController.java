@@ -1,5 +1,6 @@
 package com.cq.web.controller.admin;
 
+import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.Role;
@@ -70,6 +71,10 @@ public class UserController extends BaseController {
         return "admin/user/view";
     }
 
+    /**
+     * 编辑用户
+     */
+    @SystemLog(key = "userName",value = "编辑用户")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
     public JsonResult edit(User user, ModelMap map){
@@ -81,6 +86,9 @@ public class UserController extends BaseController {
         return JsonResult.success();
     }
 
+    /**
+     * 删除用户
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id,ModelMap map) {
