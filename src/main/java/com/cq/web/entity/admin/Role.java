@@ -130,4 +130,19 @@ public class Role extends BaseEntity {
     public void setResources(Set<Resource> resources) {
         this.resources = resources;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", roleKey='" + roleKey + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", resources=" + resources +
+                '}';
+    }
+
 }

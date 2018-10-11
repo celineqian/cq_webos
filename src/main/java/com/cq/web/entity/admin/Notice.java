@@ -85,5 +85,17 @@ public class Notice extends BaseEntity {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Notice{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createDate=" + createDate +
+                ", userId=" + userId +
+                '}';
+    }
+
 }
 

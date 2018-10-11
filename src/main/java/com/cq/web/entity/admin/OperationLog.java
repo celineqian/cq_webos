@@ -132,4 +132,20 @@ public class OperationLog extends BaseEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "OperationLog{" +
+                "id=" + id +
+                ", logType='" + logType + '\'' +
+                ", logName='" + logName + '\'' +
+                ", userId=" + userId +
+                ", className='" + className + '\'' +
+                ", method='" + method + '\'' +
+                ", createTime=" + createTime +
+                ", succeed='" + succeed + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
 }
