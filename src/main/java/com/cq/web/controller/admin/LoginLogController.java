@@ -31,7 +31,6 @@ public class LoginLogController extends BaseController {
     }
 
 
-
     @RequestMapping(value = { "/list" })
     @ResponseBody
     public Page<LoginLog> list() {

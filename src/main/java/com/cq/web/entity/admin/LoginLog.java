@@ -92,4 +92,17 @@ public class LoginLog extends BaseEntity {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+    @Override
+    public String toString() {
+        return "LoginLog{" +
+                "id=" + id +
+                ", logName='" + logName + '\'' +
+                ", userId=" + userId +
+                ", createTime=" + createTime +
+                ", message='" + message + '\'' +
+                ", ip='" + ip + '\'' +
+                '}';
+    }
+
 }

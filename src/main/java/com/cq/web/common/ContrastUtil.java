@@ -28,7 +28,7 @@ public class ContrastUtil {
         String str = "";
         try{
             Class clazz = pojo1.getClass();
-            Field[] fields = pojo2.getClass().getDeclaredFields();
+            Field[] fields = pojo1.getClass().getDeclaredFields();
             int i = 1;
             for (Field field : fields){
                 if("serialVersionUID".equals(field.getName()))
@@ -44,7 +44,7 @@ public class ContrastUtil {
                 if(!o1.toString().equals(o2.toString())){
                     if(i != 1)
                         str += separator;
-                    str += "字段名称" + field.getName() + ",旧值:" + o1 + "新值:" + o2;
+                    str += "字段名称" + field.getName() + ",旧值:" + o1 + ",新值:" + o2;
                     i++;
                 }
             }

@@ -39,7 +39,6 @@ public class LoginController extends BaseController {
 
             User user = ShiroUtil.getUser();
             LogManager.me().executeLog(LogTaskFactory.loginLog(user.getId(), getIp()));
-
             return REDIRECT + "/admin/index";
         } catch (AuthenticationException e) {
             model.put("message", e.getMessage());

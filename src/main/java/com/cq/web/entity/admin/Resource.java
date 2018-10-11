@@ -190,4 +190,24 @@ public class  Resource extends BaseEntity {
     public void setParent(Resource parent) {
         this.parent = parent;
     }
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sourceKey='" + sourceKey + '\'' +
+                ", type='" + type + '\'' +
+                ", sourceUrl='" + sourceUrl + '\'' +
+                ", level='" + level + '\'' +
+                ", sort=" + sort +
+                ", icon='" + icon + '\'' +
+                ", isHidden=" + isHidden +
+                ", description='" + description + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", parent=" + parent +
+                '}';
+    }
+
 }
