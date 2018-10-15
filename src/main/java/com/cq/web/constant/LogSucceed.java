@@ -1,4 +1,4 @@
-package com.cq.web.config.log;
+package com.cq.web.constant;
 
 /**
  * 业务是否成功的日志记录

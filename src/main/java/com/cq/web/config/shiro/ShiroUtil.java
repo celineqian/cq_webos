@@ -1,7 +1,6 @@
 package com.cq.web.config.shiro;
 
 import com.cq.web.entity.admin.User;
-import com.cq.web.entity.admin.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 

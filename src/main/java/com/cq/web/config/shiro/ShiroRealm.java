@@ -3,6 +3,7 @@ package com.cq.web.config.shiro;
 import com.cq.web.common.MD5Utils;
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
+import com.cq.web.constant.ExceptionMsg;
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.entity.admin.User;
@@ -68,21 +69,18 @@ public class ShiroRealm extends AuthorizingRealm {
         User user = userRepository.findByUserName(username);
         String password = new String((char[]) token.getCredentials());
         if(user == null) {
-            String msg = "账号或密码不正确";
-            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
-            throw new UnknownAccountException(msg);
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,ExceptionMsg.WRONG_USERORPWD.getMessage(),getIp()));
+            throw new UnknownAccountException(ExceptionMsg.WRONG_USERORPWD.getMessage());
         }
         // 密码错误
         if (!MD5Utils.md5(password).equals(user.getPassword())) {
-            String msg = "密码不正确";
-            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
-            throw new IncorrectCredentialsException(msg);
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,ExceptionMsg.WRONG_PASSWORD.getMessage(),getIp()));
+            throw new IncorrectCredentialsException(ExceptionMsg.WRONG_PASSWORD.getMessage());
         }
         // 账号锁定
         if (user.getLocked() == 1) {
-            String msg = "账号已被锁定,请联系管理员";
-            LogManager.me().executeLog(LogTaskFactory.loginLog(username,msg,getIp()));
-            throw new LockedAccountException(msg);
+            LogManager.me().executeLog(LogTaskFactory.loginLog(username,ExceptionMsg.ACCOUNT_LOCKED.getMessage(),getIp()));
+            throw new LockedAccountException(ExceptionMsg.ACCOUNT_LOCKED.getMessage());
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
         return info;

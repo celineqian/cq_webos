@@ -36,7 +36,7 @@ public class  Resource extends BaseEntity {
     private String sourceKey;
 
     /**
-     * 资源类型 1:目录,2: 按钮
+     * 资源类型 1:目录, 2:节点
      */
     private String type;
 

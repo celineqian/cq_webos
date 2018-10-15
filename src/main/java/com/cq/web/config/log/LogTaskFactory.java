@@ -1,6 +1,8 @@
 package com.cq.web.config.log;
 
 import com.cq.web.config.web.SpringContextHelper;
+import com.cq.web.constant.LogSucceed;
+import com.cq.web.constant.LogType;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.entity.admin.OperationLog;
 import com.cq.web.repository.admin.LoginLogRepository;

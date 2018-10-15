@@ -1,5 +1,7 @@
 package com.cq.web.config.log;
 
+import com.cq.web.constant.LogSucceed;
+import com.cq.web.constant.LogType;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.entity.admin.OperationLog;
 
@@ -49,7 +51,7 @@ public class LogFactory {
         operationLog.setClassName(clazzName);
         operationLog.setMethod(methodName);
         operationLog.setCreateTime(new Date());
-        operationLog.setSucceed(LogSucceed.SUCCESS.getMessage());
+        operationLog.setSucceed(succeed.getMessage());
         operationLog.setRemark(msg);
         return operationLog;
     }
