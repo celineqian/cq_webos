@@ -44,7 +44,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
             //创建新用户
             user.setCreateDate(new Date());
             user.setUpdateDate(new Date());
-            user.setDeleteStatus(0);
+            user.setDeleted(0);
             user.setPassword(MD5Utils.md5(null == user.getPassword() ? "111111" : user.getPassword()));
             save(user);
         }
