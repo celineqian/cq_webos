@@ -57,7 +57,7 @@ public class User extends BaseEntity {
     /**
      * 逻辑删除状态: 0 未删除; 1 删除
      */
-    private Integer deleteStatus;
+    private Integer deleted;
 
     /**
      * 是否锁定 0：未锁定; 1: 锁定
@@ -65,7 +65,7 @@ public class User extends BaseEntity {
     private Integer locked;
 
     /**
-     * 用户描述，UI使用
+     * 用户描述
      */
     private String description;
 
@@ -86,13 +86,11 @@ public class User extends BaseEntity {
     @JoinTable(name = "t_user_role" , joinColumns = {@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
-
         this.id = id;
     }
 
@@ -136,12 +134,12 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public Integer getDeleteStatus() {
-        return deleteStatus;
+    public Integer getDeleted() {
+        return deleted;
     }
 
-    public void setDeleteStatus(Integer deleteStatus) {
-        this.deleteStatus = deleteStatus;
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
 
     public Integer getLocked() {
@@ -193,7 +191,7 @@ public class User extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", deleteStatus=" + deleteStatus +
+                ", deleted=" + deleted +
                 ", locked=" + locked +
                 ", description='" + description + '\'' +
                 ", createDate=" + createDate +
