@@ -1,7 +1,7 @@
 package com.cq.web.service.admin.impl;
 
 import com.cq.web.common.MD5Utils;
-import com.cq.web.constant.Status;
+import com.cq.web.constant.AccountStatus;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.entity.admin.User;
 import com.cq.web.repository.BaseRepository;
@@ -45,7 +45,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
             //创建新用户
             user.setCreateDate(new Date());
             user.setUpdateDate(new Date());
-            user.setStatus(Status.OK.getCode());
+            user.setStatus(AccountStatus.OK.getCode());
             user.setPassword(MD5Utils.md5(null == user.getPassword() ? "111111" : user.getPassword()));
             save(user);
         }

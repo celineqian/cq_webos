@@ -74,7 +74,7 @@ public class UserController extends BaseController {
     /**
      * 编辑用户
      */
-    @SystemLog(key = "userName",value = "编辑用户")
+    @SystemLog(value = "编辑用户")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
     public JsonResult edit(User user, ModelMap map){

@@ -1,7 +1,7 @@
 package com.cq.web.config.log;
 
 import com.cq.web.config.web.SpringContextHelper;
-import com.cq.web.constant.LogSucceed;
+import com.cq.web.constant.LogState;
 import com.cq.web.constant.LogType;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.entity.admin.OperationLog;
@@ -69,11 +69,12 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName, final String msg) {
+
+    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName) {
         return new TimerTask() {
             @Override
             public void run() {
-                OperationLog operationLog = LogFactory.createOperationLog(LogType.BUSSINESS, userId, bussinessName, clazzName, methodName, msg, LogSucceed.SUCCESS);
+                OperationLog operationLog = LogFactory.createOperationLog(LogType.BUSSINESS, userId, bussinessName, clazzName, methodName, LogState.SUCCESS);
                 try {
                     operationLogRepository.saveAndFlush(operationLog);
                 } catch (Exception e) {

@@ -17,10 +17,4 @@ public @interface SystemLog {
      */
     String value() default "";
 
-    /**
-     * 被修改的实体唯一标识，例如：菜单"id"
-     * @return
-     */
-    String key() default "";
-
 }

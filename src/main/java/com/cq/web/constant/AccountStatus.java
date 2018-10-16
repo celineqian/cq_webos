@@ -4,7 +4,7 @@ package com.cq.web.constant;
  * @Author Celine Q
  * @Create 16/10/2018 9:51 AM
  **/
-public enum Status {
+public enum AccountStatus {
 
     OK(0,"正常"),
     FROZEN(1,"冻结"),
@@ -13,7 +13,7 @@ public enum Status {
     int code;
     String message;
 
-    Status(int code, String message) {
+    AccountStatus(int code, String message) {
         this.code = code;
         this.message = message;
     }

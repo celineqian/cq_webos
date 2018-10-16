@@ -1,6 +1,6 @@
 package com.cq.web.config.log;
 
-import com.cq.web.constant.LogSucceed;
+import com.cq.web.constant.LogState;
 import com.cq.web.constant.LogType;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.entity.admin.OperationLog;
@@ -38,12 +38,11 @@ public class LogFactory {
      * @param bussinessName
      * @param clazzName
      * @param methodName
-     * @param msg
      * @param succeed
      * @return
      */
     public static OperationLog createOperationLog(LogType logType, Integer userId, String bussinessName,
-                                                  String clazzName, String methodName, String msg, LogSucceed succeed) {
+                                                  String clazzName, String methodName, LogState succeed) {
         OperationLog operationLog = new OperationLog();
         operationLog.setLogType(logType.getMessage());
         operationLog.setLogName(bussinessName);
@@ -52,7 +51,6 @@ public class LogFactory {
         operationLog.setMethod(methodName);
         operationLog.setCreateTime(new Date());
         operationLog.setSucceed(succeed.getMessage());
-        operationLog.setRemark(msg);
         return operationLog;
     }
 }

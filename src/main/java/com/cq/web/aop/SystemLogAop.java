@@ -1,13 +1,9 @@
 package com.cq.web.aop;
 
 import com.cq.web.annotion.SystemLog;
-import com.cq.web.common.ContrastUtil;
-import com.cq.web.config.log.LogFactory;
 import com.cq.web.config.log.LogManager;
-import com.cq.web.config.log.LogObjectHolder;
 import com.cq.web.config.log.LogTaskFactory;
 import com.cq.web.config.shiro.ShiroUtil;
-import com.cq.web.config.web.HttpUtil;
 import com.cq.web.entity.admin.User;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -20,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 
 /**
  * @Author Celine Q
@@ -70,20 +65,12 @@ public class SystemLogAop {
 
         SystemLog annotation = currentMethod.getAnnotation(SystemLog.class);
         String businessName = annotation.value();
-        String key = annotation.key();
         StringBuilder sb = new StringBuilder();
         for(Object param: params){
             sb.append(param);
             sb.append(" & ");
         }
-
-        String msg="";
-        if(businessName.indexOf("修改")!=-1 || businessName.indexOf("编辑")!=-1){
-            Object obj1 = LogObjectHolder.me().get();
-            Map<String,String> obj2 = HttpUtil.getRequestParameters();
-            msg = ContrastUtil.contrastObj(obj1,obj2);
-        }
-        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(),businessName,className,methodName,msg));
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(),businessName,className,methodName));
     }
 
 

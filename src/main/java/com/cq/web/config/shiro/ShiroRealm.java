@@ -3,7 +3,7 @@ package com.cq.web.config.shiro;
 import com.cq.web.common.MD5Utils;
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
-import com.cq.web.constant.Status;
+import com.cq.web.constant.AccountStatus;
 import com.cq.web.constant.ExceptionMsg;
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
@@ -79,12 +79,12 @@ public class ShiroRealm extends AuthorizingRealm {
             throw new IncorrectCredentialsException(ExceptionMsg.WRONG_PASSWORD.getMessage());
         }
         // 账号锁定
-        if (user.getStatus() == Status.FROZEN.getCode()) {
+        if (user.getStatus() == AccountStatus.FROZEN.getCode()) {
             LogManager.me().executeLog(LogTaskFactory.loginLog(username,ExceptionMsg.ACCOUNT_LOCKED.getMessage(),getIp()));
             throw new LockedAccountException(ExceptionMsg.ACCOUNT_LOCKED.getMessage());
         }
         //账号已删除
-        if (user.getStatus() == Status.DELETED.getCode()){
+        if (user.getStatus() == AccountStatus.DELETED.getCode()){
             LogManager.me().executeLog(LogTaskFactory.loginLog(username,ExceptionMsg.ACCOUNT_DELETED.getMessage(),getIp()));
             throw new LockedAccountException(ExceptionMsg.ACCOUNT_DELETED.getMessage());
         }
