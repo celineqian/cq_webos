@@ -65,11 +65,14 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Status:</label>
                                     <div class="col-md-9">
-                                        <#if user.locked == 0>
-                                         <input type="text" class="form-control" name="locked" id="locked" value="未锁定"/>
+                                        <#if user.status == 0>
+                                         <input type="text" class="form-control" name="status" id="status" value="正常"/>
                                         </#if>
-                                        <#if user.locked == 1>
-                                            <input type="text" class="form-control" name="locked" value="锁定"/>
+                                        <#if user.status == 1>
+                                            <input type="text" class="form-control" name="status" value="冻结"/>
+                                        </#if>
+                                        <#if user.status == 2>
+                                            <input type="text" class="form-control" name="status" id="status" value="删除"/>
                                         </#if>
                                     </div>
                                 </div>

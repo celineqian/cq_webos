@@ -6,8 +6,9 @@ USE cqweb;
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO t_user VALUES (1,'2018-10-03 15:41:50',0,'管理员','celine@gmail.com',0,'CQ','3931MUEQD1939MQMLM4AISPVNE','9909990','2018-10-03 15:41:50','celine'),
-(2,'2018-10-03 15:41:50',0,'用户','user@gmail.com',0,'User','3931MUEQD1939MQMLM4AISPVNE','0000000','2018-10-03 15:41:50','user');
+INSERT INTO t_user VALUES
+(1,'2018-10-03 15:41:50','管理员','celine@gmail.com','CQ','3931MUEQD1939MQMLM4AISPVNE',0,'9909990','2018-10-03 15:41:50','celine'),
+(2,'2018-10-03 15:41:50','用户','user@gmail.com','User','3931MUEQD1939MQMLM4AISPVNE',0,'0000000','2018-10-03 15:41:50','user');
 
 
 -- ----------------------------

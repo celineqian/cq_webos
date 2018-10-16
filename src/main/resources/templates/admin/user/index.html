@@ -180,17 +180,14 @@
                 {title: "昵称", field: "nickName"},
                 {title: "电话", field: "telephone"},
                 {title: "邮箱", field: "email"},
-                {title: "状态", sortable: true, field: "deleted",
+                {title: "状态", sortable: true, field: "status",
                     formatter: function (value, row, index) {
                         if (value == '0')
-                            return '<span class="label label-default">未删除</span>';
-                        return '<span class="label label-danger">已删除</span>';
-                    }},
-                {title: "锁定", field: "locked",
-                    formatter: function (value, row, index) {
-                        if (value == '0')
-                            return '<span class="label label-default">未锁定</span>';
-                        return '<span class="label label-danger">已锁定</span>';
+                            return '<span class="label label-default">正常</span>';
+                        if (value == '1')
+                            return '<span class="label label-default">冻结</span>';
+                        if (value == '2')
+                            return '<span class="label label-default">删除</span>';
                     }},
                 {title: "创建时间", field: "createDate",
                     formatter: function (value, row, index) {

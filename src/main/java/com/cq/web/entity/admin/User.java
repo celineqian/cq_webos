@@ -55,19 +55,14 @@ public class User extends BaseEntity {
     private String email;
 
     /**
-     * 逻辑删除状态: 0 未删除; 1 删除
-     */
-    private Integer deleted;
-
-    /**
-     * 是否锁定 0：未锁定; 1: 锁定
-     */
-    private Integer locked;
-
-    /**
      * 用户描述
      */
     private String description;
+
+    /**
+     * 状态
+     */
+    private Integer status;
 
     /**
      * 创建时间
@@ -85,6 +80,14 @@ public class User extends BaseEntity {
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(name = "t_user_role" , joinColumns = {@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -134,22 +137,6 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public Integer getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
-    }
-
-    public Integer getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Integer locked) {
-        this.locked = locked;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -191,9 +178,8 @@ public class User extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", deleted=" + deleted +
-                ", locked=" + locked +
                 ", description='" + description + '\'' +
+                ", status=" + status +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
                 ", roles=" + roles +

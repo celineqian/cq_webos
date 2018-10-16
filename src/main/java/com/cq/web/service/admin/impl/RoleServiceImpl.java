@@ -1,5 +1,6 @@
 package com.cq.web.service.admin.impl;
 
+import com.cq.web.constant.Status;
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.repository.BaseRepository;
@@ -44,6 +45,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
             r.setUpdateDate(new Date());
             update(r);
         }else{
+            role.setStatus(Status.OK.getCode());
             role.setCreateDate(new Date());
             role.setUpdateDate(new Date());
             save(role);
