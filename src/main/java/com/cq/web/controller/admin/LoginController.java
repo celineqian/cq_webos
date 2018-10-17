@@ -1,5 +1,6 @@
 package com.cq.web.controller.admin;
 
+import com.cq.web.annotion.SystemLog;
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
 import com.cq.web.config.shiro.ShiroUtil;
@@ -23,12 +24,19 @@ import static com.cq.web.config.web.HttpUtil.getIp;
 public class LoginController extends BaseController {
 
 
+    /**
+     * 用户登陆主页
+     */
     @RequestMapping(value = "/admin/login" , method = RequestMethod.GET)
     public String login(){
         return "admin/login";
     }
 
 
+    /**
+     * 用户登陆
+     */
+    @SystemLog(value = "用户登陆")
     @RequestMapping(value = "/admin/login" , method = RequestMethod.POST)
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,ModelMap model){
@@ -48,8 +56,8 @@ public class LoginController extends BaseController {
 
     /**
      * 退出登陆
-     * @return
      */
+    @SystemLog(value = "退出登陆")
     @RequestMapping(value = "/admin/logout" , method = RequestMethod.GET)
     public String logout (){
         LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroUtil.getUser().getId(),getIp()));

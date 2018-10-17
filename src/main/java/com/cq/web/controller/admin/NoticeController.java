@@ -1,5 +1,6 @@
 package com.cq.web.controller.admin;
 
+import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.Notice;
@@ -29,11 +30,17 @@ public class NoticeController extends BaseController {
     @Autowired
     private NoticeService noticeService;
 
+    /**
+     * 通知主页
+     */
     @RequestMapping(value = { "/", "/index" })
     public String index() {
         return "admin/notice/index";
     }
 
+    /**
+     * 通知列表页
+     */
     @RequestMapping(value = { "/list" })
     @ResponseBody
     public Page<Notice> list(){
@@ -46,12 +53,32 @@ public class NoticeController extends BaseController {
         return page;
     }
 
+    /**
+     * 通知添加页跳转
+     */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        return "admin/notice/form";
+        return "admin/notice/add";
     }
 
+    /**
+     * 通知添加
+     */
+    @SystemLog(value = "通知添加")
+    @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult add(Notice notice, ModelMap map){
+        try {
+            noticeService.saveOrUpdate(notice);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
 
+    /**
+     * 通知编辑页调整
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id,ModelMap map) {
         Notice notice = noticeService.find(id);
@@ -60,6 +87,10 @@ public class NoticeController extends BaseController {
     }
 
 
+    /**
+     * 通知编辑
+     */
+    @SystemLog(value = "通知编辑")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
     public JsonResult edit(Notice notice, ModelMap map){
@@ -71,7 +102,10 @@ public class NoticeController extends BaseController {
         return JsonResult.success();
     }
 
-
+    /**
+     * 通知删除
+     */
+    @SystemLog(value = "通知删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id, ModelMap map) {

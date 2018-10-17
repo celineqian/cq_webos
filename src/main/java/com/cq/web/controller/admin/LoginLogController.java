@@ -1,5 +1,6 @@
 package com.cq.web.controller.admin;
 
+import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.LoginLog;
@@ -25,12 +26,18 @@ public class LoginLogController extends BaseController {
     @Autowired
     private LoginLogRepository loginLogRepository;
 
+    /**
+     * 登陆日志主页
+     */
     @RequestMapping(value = { "/", "/index" })
     public String index() {
         return "admin/loginlog/index";
     }
 
 
+    /**
+     * 登陆日志列表页
+     */
     @RequestMapping(value = { "/list" })
     @ResponseBody
     public Page<LoginLog> list() {
@@ -43,6 +50,10 @@ public class LoginLogController extends BaseController {
         return page;
     }
 
+    /**
+     * 登陆日志清空
+     */
+    @SystemLog(value = "登陆日志清空")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete() {

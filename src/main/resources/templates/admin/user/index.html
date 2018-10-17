@@ -35,7 +35,10 @@
                     <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-warning"></span><@spring.message "NoticeM"/></a></li>
                     </@shiro.hasPermission>
                     <@shiro.hasPermission name="system:loginlog:index">
-                    <li><a href="${ctxPath!}/admin/loginlog/index"><span class="fa fa-file-signature"></span><@spring.message "LoginlogM"/></a></li>
+                    <li><a href="${ctxPath!}/admin/loginlog/index"><span class="fa fa-file-o"></span><@spring.message "LoginlogM"/></a></li>
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="system:log:index">
+                    <li><a href="${ctxPath!}/admin/log/index"><span class="fa fa-file-o"></span><@spring.message "LogM"/></a></li>
                     </@shiro.hasPermission>
                 </ul>
             </li>

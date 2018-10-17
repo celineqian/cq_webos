@@ -1,10 +1,12 @@
 package com.cq.web.config.log;
 
+import com.cq.web.config.shiro.ShiroUtil;
 import com.cq.web.config.web.SpringContextHelper;
 import com.cq.web.constant.LogState;
 import com.cq.web.constant.LogType;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.entity.admin.OperationLog;
+import com.cq.web.entity.admin.User;
 import com.cq.web.repository.admin.LoginLogRepository;
 import com.cq.web.repository.admin.OperationLogRepository;
 import org.slf4j.Logger;
@@ -70,11 +72,11 @@ public class LogTaskFactory {
     }
 
 
-    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName) {
+    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName,final String remark) {
         return new TimerTask() {
             @Override
             public void run() {
-                OperationLog operationLog = LogFactory.createOperationLog(LogType.BUSSINESS, userId, bussinessName, clazzName, methodName, LogState.SUCCESS);
+                OperationLog operationLog = LogFactory.createOperationLog(LogType.BUSSINESS, userId, bussinessName, clazzName, methodName, LogState.SUCCESS, remark);
                 try {
                     operationLogRepository.saveAndFlush(operationLog);
                 } catch (Exception e) {

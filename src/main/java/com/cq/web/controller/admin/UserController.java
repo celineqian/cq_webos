@@ -39,6 +39,9 @@ public class UserController extends BaseController {
         return "admin/user/index";
     }
 
+    /**
+     * 用户列表页
+     */
     @RequestMapping(value = { "/list" })
     @ResponseBody
     public Page<User> list() {
@@ -51,12 +54,32 @@ public class UserController extends BaseController {
         return page;
     }
 
+    /**
+     * 跳转用户添加页面
+     */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        return "admin/user/form";
+        return "admin/user/add";
     }
 
+    /**
+     * 添加用户
+     */
+    @SystemLog(value = "添加用户")
+    @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult add(User user, ModelMap map){
+        try {
+            userService.saveOrUpdate(user);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
 
+    /**
+     * 编辑用户跳转页面
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id,ModelMap map) {
         User user = userService.find(id);
@@ -64,6 +87,9 @@ public class UserController extends BaseController {
         return "admin/user/form";
     }
 
+    /**
+     * 查看用户信息
+     */
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable Integer id,ModelMap map) {
         User user = userService.find(id);
@@ -89,6 +115,7 @@ public class UserController extends BaseController {
     /**
      * 删除用户
      */
+    @SystemLog(value = "删除用户")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id,ModelMap map) {
@@ -102,6 +129,9 @@ public class UserController extends BaseController {
     }
 
 
+    /**
+     * 跳转到关联角色页面
+     */
     @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
     public String grant(@PathVariable Integer id, ModelMap map){
         User user = userService.find(id);
@@ -117,6 +147,10 @@ public class UserController extends BaseController {
         return "admin/user/grant";
     }
 
+    /**
+     * 关联角色
+     */
+    @SystemLog(value = "关联角色")
     @ResponseBody
     @RequestMapping(value = "/grant/{id}", method = RequestMethod.POST)
     public JsonResult grant(@PathVariable Integer id,String[] roleIds, ModelMap map) {
@@ -128,6 +162,5 @@ public class UserController extends BaseController {
         }
         return JsonResult.success();
     }
-
 
 }

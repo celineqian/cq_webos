@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>CQ WebOS</title>
+    <#include "/header.html">
+</head>
+<body>
+<!-- PAGE CONTENT -->
+<div class="page-content">
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START JQUERY VALIDATION PLUGIN -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="jvalidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/admin/resource/add">
+                            <input type="hidden" id="id" name="id" value="${resource.id}">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">上级资源</label>
+                                    <div class="col-md-9">
+                                        <select name="parent.id" class="form-control">
+                                            <#list list as r>
+                                                <option value="${r.id}" <#if resource.parent.id == r.id>selected="selected"</#if>>
+                                                <#if r.level == 1>|-<#elseif  r.level == 2>　|-<#else>　　|-</#if>${r.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Resource Name:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="name" id="name" value="${resource.name}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">资源KEY:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control"  name="sourceKey" id="sourceKey" value="${resource.sourceKey}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">资源URL:</label>
+                                    <div class="col-md-9">
+                                        <input id="sourceUrl" name="sourceUrl" class="form-control" value="${resource.sourceUrl}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">层级:</label>
+                                    <div class="col-md-9">
+                                        <input id="level" name="level" class="form-control" value="${resource.level}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">类型:</label>
+                                    <div class="col-md-9">
+                                        <input id="type" name="type" class="form-control" value="${resource.type}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">排序:</label>
+                                    <div class="col-md-9">
+                                        <input id="sort" name="sort" class="form-control" value="${resource.sort}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">状态:</label>
+                                    <div class="col-md-9">
+                                        <select name="isHidden" class="form-control">
+                                            <option value="0" <#if resource.isHidden == 0>selected="selected"</#if>>显示</option>
+                                            <option value="1" <#if resource.isHidden == 1>selected="selected"</#if>>隐藏</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">描述:</label>
+                                    <div class="col-md-9">
+                                        <input id="description" name="description" class="form-control" value="${resource.description}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                <div class="btn-group pull-right">
+                                    <button class="btn btn-primary" type="submit"><@spring.message "Submit"/></button>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- END JQUERY VALIDATION PLUGIN -->
+            </div>
+        </div>
+        <!-- PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<script type="text/javascript">
+    var jvalidate = $("#jvalidate").validate({
+        rules: {
+            sourceKey: {
+                required: true,
+                minlength: 4,
+                maxlength: 40
+            },
+            name: {
+                required: true,
+                minlength: 4,
+                maxlength: 20
+            },
+            type: {
+                required: true
+            },
+            sourceUrl: {
+                required: true
+            },
+            level: {
+                required: true
+            },
+            sort: {
+                required: true
+            },
+            isHidden: {
+                required: true
+            },
+            description: {
+                required: true,
+                maxlength: 40
+            }
+        },
+        messages: {},
+        submitHandler:function(form){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "${ctxPath!}/admin/resource/add",
+                data: $(form).serialize(),
+                success: function(msg){
+                    layer.msg(msg.message, {time: 1000},function(){
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index);
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

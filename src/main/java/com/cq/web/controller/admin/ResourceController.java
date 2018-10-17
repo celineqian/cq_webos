@@ -1,5 +1,6 @@
 package com.cq.web.controller.admin;
 
+import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
 import com.cq.web.controller.app.BaseController;
 import com.cq.web.entity.admin.Resource;
@@ -29,6 +30,9 @@ public class ResourceController extends BaseController {
     @Autowired
     private ResourceService resourceService;
 
+    /**
+     * 资源树列表
+     */
     @RequestMapping("/tree/{resourceId}")
     @ResponseBody
     public List<ZtreeView> tree(@PathVariable Integer resourceId){
@@ -36,11 +40,17 @@ public class ResourceController extends BaseController {
         return list;
     }
 
+    /**
+     * 资源主页跳转
+     */
     @RequestMapping("/index")
     public String index() {
         return "admin/resource/index";
     }
 
+    /**
+     *  资源列表页
+     */
     @RequestMapping("/list")
     @ResponseBody
     public Page<Resource> list() {
@@ -53,14 +63,34 @@ public class ResourceController extends BaseController {
         return page;
     }
 
+    /**
+     * 资源添加页面跳转
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap map) {
         List<Resource> list = resourceService.findAll();
         map.put("list", list);
-        return "admin/resource/form";
+        return "admin/resource/add";
     }
 
+    /**
+     * 资源添加
+     */
+    @SystemLog(value = "资源添加")
+    @RequestMapping(value= {"/add"}, method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult add(Resource resource, ModelMap map){
+        try {
+            resourceService.saveOrUpdate(resource);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
 
+    /**
+     * 资源编辑页面跳转
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id,ModelMap map) {
         Resource resource = resourceService.find(id);
@@ -71,6 +101,10 @@ public class ResourceController extends BaseController {
         return "admin/resource/form";
     }
 
+    /**
+     * 资源编辑
+     */
+    @SystemLog(value = "资源编辑")
     @RequestMapping(value= {"/edit"}, method = RequestMethod.POST)
     @ResponseBody
     public JsonResult edit(Resource resource, ModelMap map){
@@ -82,6 +116,10 @@ public class ResourceController extends BaseController {
         return JsonResult.success();
     }
 
+    /**
+     * 资源删除
+     */
+    @SystemLog(value = "资源删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id,ModelMap map) {
