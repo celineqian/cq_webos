@@ -27,7 +27,7 @@ public class LoginController extends BaseController {
     /**
      * 用户登陆主页
      */
-    @RequestMapping(value = "/admin/login" , method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index","/admin/login"}  , method = RequestMethod.GET)
     public String login(){
         return "admin/login";
     }

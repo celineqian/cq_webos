@@ -1,0 +1,21 @@
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+            <div class="mb-content">
+                <p>Are you sure you want to log out?</p>
+                <p>Press No if you want to continue work. Press Yes to logout current user.</p>
+            </div>
+            <div class="mb-footer">
+                <form action="/admin/logout" id="logout">
+                    <div class="pull-right">
+                        <a href="javascript:document:logout.submit();" class="btn btn-success btn-lg"><@spring.message "Yes"/></a>
+                        <button class="btn btn-default btn-lg mb-control-close"><@spring.message "No"/></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MESSAGE BOX-->

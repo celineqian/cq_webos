@@ -70,7 +70,7 @@ public class SystemLogAop {
             sb.append(param);
             sb.append(" & ");
         }
-        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(),businessName,className,methodName));
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(),businessName,className,methodName,""));
     }
 
 

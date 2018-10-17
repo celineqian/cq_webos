@@ -8,47 +8,8 @@
 <body>
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
-
     <!-- START PAGE SIDEBAR -->
-    <div class="page-sidebar">
-        <!-- START X-NAVIGATION -->
-        <ul class="x-navigation">
-            <li class="xn-logo">
-                <a href="#">WEB OS</a>
-                <a href="#" class="x-navigation-control"></a>
-            </li>
-            <li class="xn-title"></li>
-            <li>
-                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
-            </li>
-            <li class="xn-openable">
-                <a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text"><@spring.message "Dashboards"/></span></a>
-                <ul>
-                <@shiro.hasPermission name="system:user:index">
-                    <li><a href="${ctxPath!}/admin/user/index"><span class="fa fa-user"></span><@spring.message "UserM"/></a></li>
-                </@shiro.hasPermission>
-                <@shiro.hasPermission name="system:role:index">
-                    <li><a href="${ctxPath!}/admin/role/index"><span class="fa fa-wrench"></span><@spring.message "RoleM"/></a></li>
-                </@shiro.hasPermission>
-                <@shiro.hasPermission name="system:resource:index">
-                    <li><a href="${ctxPath!}/admin/resource/index"><span class="fa fa-users"></span><@spring.message "ResourceM"/></a></li>
-                </@shiro.hasPermission>
-				<@shiro.hasPermission name="system:notice:index">
-                    <li><a href="${ctxPath!}/admin/notice/index"><span class="fa fa-warning"></span><@spring.message "NoticeM"/></a></li>
-                </@shiro.hasPermission>
-                <@shiro.hasPermission name="system:loginlog:index">
-                    <li><a href="${ctxPath!}/admin/loginlog/index"><span class="fa fa-file-o"></span><@spring.message "LoginlogM"/></a></li>
-                </@shiro.hasPermission>
-                <@shiro.hasPermission name="system:log:index">
-                <li><a href="${ctxPath!}/admin/log/index"><span class="fa fa-file-o"></span><@spring.message "LogM"/></a></li>
-                </@shiro.hasPermission>
-                </ul>
-            </li>
-        </ul>
-        <!-- END X-NAVIGATION -->
-    </div>
-    <!-- END PAGE SIDEBAR -->
-
+    <#include "/siderbar.html">
     <!-- PAGE CONTENT -->
     <div class="page-content">
 
@@ -166,27 +127,7 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-
 <!-- MESSAGE BOX-->
-<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-    <div class="mb-container">
-        <div class="mb-middle">
-            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-            <div class="mb-content">
-                <p>Are you sure you want to log out?</p>
-                <p>Press No if you want to continue work. Press Yes to logout current user.</p>
-            </div>
-            <div class="mb-footer">
-                <form action="/admin/logout" id="logout">
-                    <div class="pull-right">
-                        <a href="javascript:document:logout.submit();" class="btn btn-success btn-lg"><@spring.message "Yes"/></a>
-                        <button class="btn btn-default btn-lg mb-control-close"><@spring.message "No"/></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END MESSAGE BOX-->
+<#include "/messagebox.html">
 </body>
 </html>
