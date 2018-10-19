@@ -48,6 +48,18 @@ public class Driver extends BaseEntity {
      */
     private String remark;
 
+    /**
+     * 状态
+     */
+    private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -105,6 +117,7 @@ public class Driver extends BaseEntity {
         this.remark = remark;
     }
 
+
     @Override
     public String toString() {
         return "Driver{" +
@@ -115,6 +128,7 @@ public class Driver extends BaseEntity {
                 ", photo='" + photo + '\'' +
                 ", licenseExpireDate=" + licenseExpireDate +
                 ", remark='" + remark + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
