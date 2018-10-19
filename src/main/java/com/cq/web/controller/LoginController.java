@@ -1,10 +1,10 @@
-package com.cq.web.controller.admin;
+package com.cq.web.controller;
 
 import com.cq.web.annotion.SystemLog;
 import com.cq.web.config.log.LogManager;
 import com.cq.web.config.log.LogTaskFactory;
 import com.cq.web.config.shiro.ShiroUtil;
-import com.cq.web.controller.app.BaseController;
+import com.cq.web.controller.BaseController;
 import com.cq.web.entity.admin.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;

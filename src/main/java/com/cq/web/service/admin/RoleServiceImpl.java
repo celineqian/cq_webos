@@ -1,4 +1,4 @@
-package com.cq.web.service.admin.impl;
+package com.cq.web.service.admin;
 
 import com.cq.web.constant.AccountStatus;
 import com.cq.web.entity.admin.Resource;
@@ -6,7 +6,6 @@ import com.cq.web.entity.admin.Role;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.ResourceRepository;
 import com.cq.web.repository.admin.RoleRepository;
-import com.cq.web.service.admin.RoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

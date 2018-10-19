@@ -1,4 +1,4 @@
-package com.cq.web.service.specification;
+package com.cq.web.config.specification;
 
 /**
  * 操作符类，这个类中存储了键值对和操作符号，另外存储了连接下一个条件的类型是and还是or

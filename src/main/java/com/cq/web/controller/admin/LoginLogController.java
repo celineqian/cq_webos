@@ -2,11 +2,11 @@ package com.cq.web.controller.admin;
 
 import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
-import com.cq.web.controller.app.BaseController;
+import com.cq.web.controller.BaseController;
 import com.cq.web.entity.admin.LoginLog;
 import com.cq.web.repository.admin.LoginLogRepository;
-import com.cq.web.service.specification.SimpleSpecificationBuilder;
-import com.cq.web.service.specification.SpecificationOperator;
+import com.cq.web.config.specification.SimpleSpecificationBuilder;
+import com.cq.web.config.specification.SpecificationOperator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

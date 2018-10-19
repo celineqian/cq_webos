@@ -1,4 +1,4 @@
-package com.cq.web.vo;
+package com.cq.web.common;
 
 import java.io.Serializable;
 

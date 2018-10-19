@@ -2,7 +2,7 @@ package com.cq.web.service.admin;
 
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.service.BaseService;
-import com.cq.web.vo.ZtreeView;
+import com.cq.web.common.ZtreeView;
 import java.util.List;
 
 /**

@@ -1,16 +1,12 @@
-package com.cq.web.service.admin.impl;
+package com.cq.web.service.admin;
 
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.ResourceRepository;
-import com.cq.web.service.admin.ResourceService;
-import com.cq.web.service.admin.RoleService;
-import com.cq.web.vo.ZtreeView;
+import com.cq.web.common.ZtreeView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 

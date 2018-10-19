@@ -1,4 +1,4 @@
-package com.cq.web.service.specification;
+package com.cq.web.config.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 

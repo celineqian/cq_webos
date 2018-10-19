@@ -1,9 +1,8 @@
-package com.cq.web.service.admin.impl;
+package com.cq.web.service.admin;
 
 import com.cq.web.entity.admin.Notice;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.NoticeRepository;
-import com.cq.web.service.admin.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

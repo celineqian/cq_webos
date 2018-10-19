@@ -1,4 +1,4 @@
-package com.cq.web.controller.app;
+package com.cq.web.controller;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;

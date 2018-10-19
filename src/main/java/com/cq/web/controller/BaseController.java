@@ -1,4 +1,4 @@
-package com.cq.web.controller.app;
+package com.cq.web.controller;
 
 import com.cq.web.common.DateEditor;
 import com.cq.web.config.web.HttpUtil;

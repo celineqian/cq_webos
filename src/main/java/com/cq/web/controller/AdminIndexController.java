@@ -1,4 +1,4 @@
-package com.cq.web.controller.admin;
+package com.cq.web.controller;
 
 import com.cq.web.entity.admin.Notice;
 import com.cq.web.repository.admin.NoticeRepository;
