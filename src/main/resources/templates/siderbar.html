@@ -31,6 +31,9 @@
                 <@shiro.hasPermission name="system:log:index">
                 <li><a href="${ctxPath!}/admin/log/index"><span class="fa fa-file-o"></span><@spring.message "LogM"/></a></li>
                 </@shiro.hasPermission>
+                <@shiro.hasPermission name="transport:vehicle:index">
+                <li><a href="${ctxPath!}/transport/vehicle/index"><span class="fa fa-file-o"></span><@spring.message "VehicleM"/></a></li>
+                </@shiro.hasPermission>
            </ul>
         </li>
     </ul>

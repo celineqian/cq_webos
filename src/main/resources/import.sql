@@ -43,6 +43,11 @@ INSERT INTO t_resource VALUES
 (21,'2018-10-03 11:21:54','登陆日志删除',NULL,0,3,'登录日志删除',1,'system:loginlog:delete','/admin/loginlog/delete*',2,'2018-10-03 14:12:31',20);
 (22,'2018-10-03 11:21:54','业务日志管理',NULL,0,2,'登录日志管理',1,'system:log:index','/admin/log/index*',1,'2018-10-03 14:12:31',null);
 (23,'2018-10-03 11:21:54','业务日志删除',NULL,0,3,'登录日志删除',1,'system:log:delete','/admin/log/delete*',2,'2018-10-03 14:12:31',22);
+(24,'2018-10-03 11:21:54','车辆管理',NULL,0,2,'车辆管理',1,'transport:vehicle:index','/transport/vehicle/index*',1,'2018-10-03 14:12:31',null);
+(25,'2018-10-03 11:21:54','车辆添加',NULL,0,3,'车辆添加',1,'transport:vehicle:add','/transport/vehicle/add',2,'2018-10-03 14:12:31',24);
+(26,'2018-10-03 11:21:54','车辆编辑',NULL,0,3,'车辆编辑',2,'transport:vehicle:edit','/transport/vehicle/edit*',2,'2018-10-03 14:12:31',24);
+(27,'2018-10-03 11:21:54','车辆删除',NULL,0,3,'车辆删除',3,'transport:vehicle:delete','/transport/vehicle/delete*',2,'2018-10-03 14:12:31',24);
+
 -- ----------------------------
 -- Records of t_user_role
 -- ----------------------------

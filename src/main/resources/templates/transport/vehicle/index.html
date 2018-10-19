@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notice List</title>
+    <#include "/header.html">
+</head>
+<body>
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+    <!-- START PAGE SIDEBAR -->
+    <#include "/siderbar.html">
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <!-- END TOGGLE NAVIGATION -->
+            <!-- SEARCH -->
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+            <!-- END SEARCH -->
+            <!-- POWER OFF -->
+            <li class="xn-icon-button pull-right last">
+                <a href="#"><span class="fa fa-power-off"></span></a>
+                <ul class="xn-drop-left">
+                    <li><a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span>&nbsp;<@spring.message "SignOut"/></a></li>
+                </ul>
+            </li>
+            <!-- END POWER OFF -->
+        </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+
+        <ul class="breadcrumb">
+            <li>
+                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
+            </li>
+            <li>
+                <span class="fa fa-user-circle-o"></span> Vehicle Management
+            </li>
+            <li>
+                <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
+                </span>
+            </li>
+        </ul>
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="panel-body">
+                            <@shiro.hasPermission name="system:notice:add">
+                            <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
+                        </@shiro.hasPermission>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-actions" id="tableList"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<!-- MESSAGE BOX-->
+<#include "/messagebox.html">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tableList").bootstrapTable({
+            //使用get请求到服务器获取数据
+            method: "POST",
+            //必须设置，不然request.getParameter获取不到请求参数
+            contentType: "application/x-www-form-urlencoded",
+            //获取数据的Servlet地址
+            url: "${ctxPath}/transport/vehicle/list",
+            //表格显示条纹
+            striped: true,
+            //启动分页
+            pagination: true,
+            //每页显示的记录数
+            pageSize: 10,
+            //当前第几页
+            pageNumber: 1,
+            //记录数可选列表
+            pageList: [5, 10, 15, 20, 25],
+            //表示服务端请求
+            sidePagination: "server",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            //设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: "undefined",
+            //json数据解析
+            responseHandler: function(res) {
+                return {
+                    "rows": res.content,
+                    "total": res.totalElements
+                };
+            },
+            //数据列
+            columns: [
+                {title: "ID", field: "id", sortable: true},
+                {title: "标题", field: "title"},
+                {title: "内容", field: "content"},
+                {title: "创建时间", field: "createDate",
+                    formatter: function (value, row, index) {
+                        var date = new Date(value);
+                        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        return date.getFullYear() + '-' + M + date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
+                    }},
+                {
+                    title: "操作",
+                    field: "empty",
+                    formatter: function (value, row, index) {
+                        var operateHtml = '<@shiro.hasPermission name="system:notice:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:notice:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
+                        return operateHtml;
+                    }
+                }]
+        });
+    });
+
+
+    function edit(id){
+        layer.open({
+            type: 2,
+            title: '车辆修改',
+            shadeClose: true,
+            shade: false,
+            area: ['893px', '600px'],
+            content: '${ctxPath}/transport/vehicle/edit/'+ id,
+            end: function(index){
+                $('#tableList').bootstrapTable("refresh");
+            }
+        });
+    }
+
+    function add(){
+        layer.open({
+            type: 2,
+            title: '车辆添加',
+            shadeClose: true,
+            shade: false,
+            area: ['893px', '600px'],
+            content: '${ctxPath!}/transport/vehicle/add',
+            end: function(index){
+                $('#tableList').bootstrapTable("refresh");
+            }
+        });
+    }
+    function del(id){
+        layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "${ctxPath!}/transport/vehicle/delete/" + id,
+                success: function(msg){
+                    layer.msg(msg.message, {time: 1000},function(){
+                        $('#tableList').bootstrapTable("refresh");
+                        layer.close(index);
+                    });
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

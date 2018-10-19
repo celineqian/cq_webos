@@ -1,14 +1,13 @@
-package com.cq.web.controller.admin;
+package com.cq.web.controller.transport;
 
 import com.cq.web.annotion.SystemLog;
 import com.cq.web.common.JsonResult;
-import com.cq.web.controller.BaseController;
-import com.cq.web.entity.admin.Notice;
-import com.cq.web.service.admin.NoticeService;
 import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
+import com.cq.web.controller.BaseController;
+import com.cq.web.entity.transport.Vehicle;
+import com.cq.web.service.transport.VehicleService;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,59 +16,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 /**
- * @author: Celine Q
- * @create: 2018-09-25 20:49
+ * @Author Celine Q
+ * @Create 19/10/2018 6:24 PM
  **/
 @Controller
-@RequestMapping("/admin/notice")
-public class NoticeController extends BaseController {
+@RequestMapping(name = "/transport/vehicle")
+public class VehicleController extends BaseController {
 
+    private VehicleService vehicleService;
 
-    @Autowired
-    private NoticeService noticeService;
-
-    /**
-     * 通知主页
-     */
     @RequestMapping(value = { "/", "/index" })
     public String index() {
-        return "admin/notice/index";
+        return "transport/vehicle/index";
     }
 
+
     /**
-     * 通知列表页
+     * 车辆列表页
      */
     @RequestMapping(value = { "/list" })
     @ResponseBody
-    public Page<Notice> list(){
-        SimpleSpecificationBuilder<Notice> builder = new SimpleSpecificationBuilder<Notice>();
+    public Page<Vehicle> list(){
+        SimpleSpecificationBuilder<Vehicle> builder = new SimpleSpecificationBuilder<Vehicle>();
         String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
         }
-        Page<Notice> page = noticeService.findAll(builder.generateSpecification(),getPageRequest());
+        Page<Vehicle> page = vehicleService.findAll(builder.generateSpecification(),getPageRequest());
         return page;
     }
 
+
     /**
-     * 通知添加页跳转
+     * 车辆添加页跳转
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        return "admin/notice/add";
+        return "transport/vehicle/add";
     }
 
+
     /**
-     * 通知添加
+     * 车辆添加
      */
-    @SystemLog(value = "通知添加")
+    @SystemLog(value = "车辆添加")
     @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add(Notice notice, ModelMap map){
+    public JsonResult add(Vehicle vehicle, ModelMap map){
         try {
-            noticeService.saveOrUpdate(notice);
+            vehicleService.saveOrUpdate(vehicle);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
@@ -77,25 +73,24 @@ public class NoticeController extends BaseController {
     }
 
     /**
-     * 通知编辑页跳转
+     * 车辆编辑页跳转
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable Integer id,ModelMap map) {
-        Notice notice = noticeService.find(id);
-        map.put("notice", notice);
-        return "admin/notice/form";
+    public String edit(@PathVariable Integer id, ModelMap map) {
+        Vehicle vehicle = vehicleService.find(id);
+        map.put("Vehicle", vehicle);
+        return "transport/Vehicle/form";
     }
 
-
     /**
-     * 通知编辑
+     * 车辆编辑
      */
-    @SystemLog(value = "通知编辑")
+    @SystemLog(value = "车辆编辑")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult edit(Notice notice, ModelMap map){
+    public JsonResult edit(Vehicle vehicle, ModelMap map){
         try {
-            noticeService.saveOrUpdate(notice);
+            vehicleService.saveOrUpdate(vehicle);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
@@ -103,14 +98,14 @@ public class NoticeController extends BaseController {
     }
 
     /**
-     * 通知删除
+     * 车辆删除
      */
-    @SystemLog(value = "通知删除")
+    @SystemLog(value = "车辆删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id, ModelMap map) {
         try {
-            noticeService.delete(id);
+            vehicleService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.failure(e.getMessage());
@@ -119,6 +114,4 @@ public class NoticeController extends BaseController {
     }
 
 
-
 }
-
