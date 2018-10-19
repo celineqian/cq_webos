@@ -8,6 +8,7 @@ import com.cq.web.controller.BaseController;
 import com.cq.web.entity.transport.Vehicle;
 import com.cq.web.service.transport.VehicleService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,9 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Create 19/10/2018 6:24 PM
  **/
 @Controller
-@RequestMapping(name = "/transport/vehicle")
+@RequestMapping("/transport/vehicle")
 public class VehicleController extends BaseController {
 
+    @Autowired
     private VehicleService vehicleService;
 
     @RequestMapping(value = { "/", "/index" })
@@ -78,7 +80,7 @@ public class VehicleController extends BaseController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
         Vehicle vehicle = vehicleService.find(id);
-        map.put("Vehicle", vehicle);
+        map.put("vehicle", vehicle);
         return "transport/Vehicle/form";
     }
 

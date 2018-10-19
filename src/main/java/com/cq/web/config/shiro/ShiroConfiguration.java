@@ -56,6 +56,7 @@ public class ShiroConfiguration {
             }
         }
         filterChainDefinitionMap.put("/admin/**" , "authc");
+        filterChainDefinitionMap.put("/transport/**" , "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

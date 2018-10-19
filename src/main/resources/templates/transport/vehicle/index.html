@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Notice List</title>
+    <title>Transport List</title>
     <#include "/header.html">
 </head>
 <body>
@@ -42,7 +42,7 @@
                 <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
             </li>
             <li>
-                <span class="fa fa-user-circle-o"></span> Vehicle Management
+                <span class="fa fa-user-circle-o"></span>&nbsp;<@spring.message "VehicleM"/>
             </li>
             <li>
                 <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
@@ -55,7 +55,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="panel-body">
-                            <@shiro.hasPermission name="system:notice:add">
+                            <@shiro.hasPermission name="transport:vehicle:add">
                             <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
                         </@shiro.hasPermission>
                     </div>
@@ -114,20 +114,39 @@
             //数据列
             columns: [
                 {title: "ID", field: "id", sortable: true},
-                {title: "标题", field: "title"},
-                {title: "内容", field: "content"},
-                {title: "创建时间", field: "createDate",
+                {title: "座位数", field: "seater"},
+                {title: "车牌号码", field: "plate"},
+                {title: "型号", field: "type"},
+                {title: "状态", field: "status",
+                    formatter: function (value, row, index) {
+                        if (value == '0')
+                            return '<span class="label label-default">正常</span>';
+                        if (value == '1')
+                            return '<span class="label label-default">使用中</span>';
+                        if (value == '2')
+                            return '<span class="label label-default">保养</span>';
+                        if (value == '3')
+                            return '<span class="label label-default">报废</span>';
+                    }},
+                {title: "维护日期", field: "serviceDate",
                     formatter: function (value, row, index) {
                         var date = new Date(value);
                         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                        return date.getFullYear() + '-' + M + date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds();
+                        return date.getFullYear() + '-' + M + date.getDate();
                     }},
+                {title: "保险到期", field: "insureDate",
+                    formatter: function (value, row, index) {
+                        var date = new Date(value);
+                        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        return date.getFullYear() + '-' + M + date.getDate();
+                    }},
+                {title: "备注", field: "remark"},
                 {
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        var operateHtml = '<@shiro.hasPermission name="system:notice:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="system:notice:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
+                        var operateHtml = '<@shiro.hasPermission name="transport:vehicle:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:vehicle:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
                     }
                 }]

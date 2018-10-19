@@ -36,12 +36,12 @@ public class Vehicle extends BaseEntity {
     /**
      * 维护日期
      */
-    private Date maintainanceDate;
+    private Date serviceDate;
 
     /**
      * 保险到期时间
      */
-    private Date insuranceDate;
+    private Date insureDate;
     /**
      * 照片
      */
@@ -51,6 +51,11 @@ public class Vehicle extends BaseEntity {
      * 备注
      */
     private String remark;
+
+    /**
+     * 车辆使用状态
+     */
+    private Integer status;
 
     public Integer getId() {
         return id;
@@ -84,20 +89,20 @@ public class Vehicle extends BaseEntity {
         this.plate = plate;
     }
 
-    public Date getMaintainanceDate() {
-        return maintainanceDate;
+    public Date getServiceDate() {
+        return serviceDate;
     }
 
-    public void setMaintainanceDate(Date maintainanceDate) {
-        this.maintainanceDate = maintainanceDate;
+    public void setServiceDate(Date serviceDate) {
+        this.serviceDate = serviceDate;
     }
 
-    public Date getInsuranceDate() {
-        return insuranceDate;
+    public Date getInsureDate() {
+        return insureDate;
     }
 
-    public void setInsuranceDate(Date insuranceDate) {
-        this.insuranceDate = insuranceDate;
+    public void setInsureDate(Date insureDate) {
+        this.insureDate = insureDate;
     }
 
     public String getPhoto() {
@@ -116,6 +121,13 @@ public class Vehicle extends BaseEntity {
         this.remark = remark;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     @Override
     public String toString() {
@@ -124,10 +136,11 @@ public class Vehicle extends BaseEntity {
                 ", type='" + type + '\'' +
                 ", seater=" + seater +
                 ", plate='" + plate + '\'' +
-                ", maintainanceDate=" + maintainanceDate +
-                ", insuranceDate=" + insuranceDate +
+                ", serviceDate=" + serviceDate +
+                ", insureDate=" + insureDate +
                 ", photo='" + photo + '\'' +
                 ", remark='" + remark + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
