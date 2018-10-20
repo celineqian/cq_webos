@@ -91,16 +91,6 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 查看用户信息
-     */
-    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable Integer id,ModelMap map) {
-        User user = userService.find(id);
-        map.put("user", user);
-        return "admin/user/view";
-    }
-
-    /**
      * 编辑用户
      */
     @SystemLog(value = "编辑用户")

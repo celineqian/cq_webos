@@ -152,8 +152,7 @@
                      title: "操作",
                      field: "empty",
                      formatter: function (value, row, index) {
-                         var operateHtml = '<@shiro.hasPermission name="system:user:view"><button class="btn btn-warning btn-xs" type="button" onclick="view(\''+row.id+'\')">查看</button>&nbsp;</@shiro.hasPermission>';
-                         operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                         var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
                          operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                          operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.id+'\')">权限</button></@shiro.hasPermission>';
                          return operateHtml;
@@ -171,19 +170,6 @@
             shade: false,
             area: ['893px', '600px'],
             content: '${ctxPath}/admin/user/edit/'+ id,
-            end: function(index){
-                $('#tableList').bootstrapTable("refresh");
-            }
-        });
-    }
-    function view(id){
-        layer.open({
-            type: 2,
-            title: '用户查看',
-            shadeClose: true,
-            shade: false,
-            area: ['893px', '600px'],
-            content: '${ctxPath!}/admin/user/view/'+ id,
             end: function(index){
                 $('#tableList').bootstrapTable("refresh");
             }
