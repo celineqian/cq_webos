@@ -5,8 +5,9 @@ import com.cq.web.common.JsonResult;
 import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
+import com.cq.web.entity.transport.Driver;
 import com.cq.web.entity.transport.Vehicle;
-import com.cq.web.service.transport.VehicleService;
+import com.cq.web.service.transport.DriverService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,83 +20,84 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author Celine Q
- * @Create 19/10/2018 6:24 PM
+ * @Create 20/10/2018 11:11 AM
  **/
 @Controller
-@RequestMapping("/transport/vehicle")
-public class VehicleController extends BaseController {
+@RequestMapping("/transport/driver")
+public class DriverController extends BaseController {
 
     @Autowired
-    private VehicleService vehicleService;
+    private DriverService driverService;
 
     /**
-     * 车辆首页
+     * 司机首页
      */
     @RequestMapping(value = "/index")
-    public String index() {
-        return "transport/vehicle/index";
+    public String index(){
+        return "transport/driver/index";
     }
 
 
     /**
-     * 车辆列表页
+     * 司机列表页
      */
     @RequestMapping(value = { "/list" })
     @ResponseBody
-    public Page<Vehicle> list(){
-        SimpleSpecificationBuilder<Vehicle> builder = new SimpleSpecificationBuilder<Vehicle>();
+    public Page<Driver> list(){
+        SimpleSpecificationBuilder<Driver> builder = new SimpleSpecificationBuilder<Driver>();
         String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
         }
-        Page<Vehicle> page = vehicleService.findAll(builder.generateSpecification(),getPageRequest());
+        Page<Driver> page = driverService.findAll(builder.generateSpecification(),getPageRequest());
         return page;
     }
 
 
     /**
-     * 车辆添加页跳转
+     * 司机添加页跳转
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        return "transport/vehicle/add";
+        return "transport/driver/add";
     }
 
 
     /**
-     * 车辆添加
+     * 司机添加
      */
-    @SystemLog(value = "车辆添加")
+    @SystemLog(value = "司机添加")
     @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add(Vehicle vehicle, ModelMap map){
+    public JsonResult add(Driver driver, ModelMap map){
         try {
-            vehicleService.saveOrUpdate(vehicle);
+            driverService.saveOrUpdate(driver);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
         return JsonResult.success();
     }
 
+
     /**
-     * 车辆编辑页跳转
+     * 司机编辑页跳转
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
-        Vehicle vehicle = vehicleService.find(id);
-        map.put("vehicle", vehicle);
-        return "transport/Vehicle/form";
+        Driver driver  = driverService.find(id);
+        map.put("driver", driver);
+        return "transport/driver/form";
     }
 
     /**
-     * 车辆编辑
+     * 司机编辑
      */
-    @SystemLog(value = "车辆编辑")
+    @SystemLog(value = "司机编辑")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult edit(Vehicle vehicle, ModelMap map){
+    public JsonResult edit(Driver driver, ModelMap map){
         try {
-            vehicleService.saveOrUpdate(vehicle);
+            driverService.saveOrUpdate(driver);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
@@ -103,20 +105,21 @@ public class VehicleController extends BaseController {
     }
 
     /**
-     * 车辆删除
+     * 司机删除
      */
-    @SystemLog(value = "车辆删除")
+    @SystemLog(value = "司机删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id, ModelMap map) {
         try {
-            vehicleService.delete(id);
+            driverService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.failure(e.getMessage());
         }
         return JsonResult.success();
     }
+
 
 
 }

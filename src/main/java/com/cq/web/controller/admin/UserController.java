@@ -34,6 +34,9 @@ public class UserController extends BaseController {
     private RoleService roleService;
 
 
+    /**
+     * 用户首页
+     */
     @RequestMapping(value = { "/", "/index" })
     public String index() {
         return "admin/user/index";

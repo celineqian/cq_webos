@@ -16,36 +16,30 @@
                 <!-- START JQUERY VALIDATION PLUGIN -->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form id="jvalidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/transport/vehicle/add">
-                            <input type="hidden" id="id" name="id" value="${vehicle.id}">
+                        <form id="jvalidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/transport/driver/add">
+                            <input type="hidden" id="id" name="id" value="${driver.id}">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">车牌号码:</label>
+                                <label class="col-md-3 control-label">司机姓名:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="plate" id="plate" value="${vehicle.plate}"/>
+                                    <input type="text" class="form-control" name="name" id="name" value="${driver.name}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">车辆型号:</label>
+                                <label class="col-md-3 control-label">电话号码:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="type" id="type" value="${vehicle.type}"/>
+                                    <input type="text" class="form-control" name="phone" id="phone" value="${driver.phone}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">座位数量:</label>
+                                <label class="col-md-3 control-label">驾照类型:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="seater" id="seater" value="${vehicle.seater}"/>
+                                    <input type="text" class="form-control" name="type" id="type" value="${driver.type}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">上一次保养日期:</label>
+                                <label class="col-md-3 control-label">驾照过期时间:</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control datepicker" name="serviceDate" id="serviceDate" value="${vehicle.serviceDate}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">保险到期:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control datepicker" name="insureDate" id="insureDate" value="${vehicle.insureDate}"/>
+                                    <input type="text" class="form-control datepicker" name="licenseExpireDate" id="licenseExpireDate" value="${driver.licenseExpireDate}"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,10 +52,11 @@
                                 <label class="col-md-3 control-label">状态:</label>
                                 <div class="col-md-9">
                                     <select name="status" class="form-control">
-                                        <option value="0" <#if vehicle.status == 0>selected="selected"</#if>>正常</option>
-                                        <option value="1" <#if vehicle.status == 1>selected="selected"</#if>>使用中</option>
-                                        <option value="2" <#if vehicle.status == 2>selected="selected"</#if>>保养</option>
-                                        <option value="3" <#if vehicle.status == 3>selected="selected"</#if>>报废</option>
+                                        <option value="0" <#if driver.status == 0>selected="selected"</#if>>正常</option>
+                                        <option value="1" <#if driver.status == 1>selected="selected"</#if>>工作中</option>
+                                        <option value="2" <#if driver.status == 2>selected="selected"</#if>>休假</option>
+                                        <option value="3" <#if driver.status == 3>selected="selected"</#if>>伤病</option>
+                                        <option value="4" <#if driver.status == 3>selected="selected"</#if>>离职</option>
                             </select>
                     </div>
                 </div>
@@ -82,10 +77,17 @@
 <script type="text/javascript">
     var jvalidate = $("#jvalidate").validate({
         rules: {
-            plate: {
+            name: {
                 required: true
             },
-            seater: {
+            phone: {
+                minlength: 7,
+                required: true
+            },
+            type: {
+                required: true
+            },
+            licenseExpireDate: {
                 required: true
             },
             status: {
