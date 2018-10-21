@@ -19,34 +19,31 @@ public class Route extends BaseEntity {
     private Integer id;
 
     /**
+     * 路线名称
+     */
+    private String name;
+
+    /**
      * 出发地
      */
-    private String departure;
+    private String dep;
 
     /**
      * 目的地
      */
-    private String destination;
-
-    /**
-     * 航班号
-     */
-    private String flight;
-
-    /**
-     * 出发时间
-     */
-    private Date departTime;
-
-    /**
-     * 到达时间
-     */
-    private Date destinateTime;
+    private String des;
 
     /**
      * 备注
      */
     private String remark;
+
+    /**
+     * 关联航班
+     */
+    @ManyToOne
+    private Flight flight;
+
 
     public Integer getId() {
         return id;
@@ -56,44 +53,28 @@ public class Route extends BaseEntity {
         this.id = id;
     }
 
-    public String getDeparture() {
-        return departure;
+    public String getName() {
+        return name;
     }
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDestination() {
-        return destination;
+    public String getDep() {
+        return dep;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDep(String dep) {
+        this.dep = dep;
     }
 
-    public String getFlight() {
-        return flight;
+    public String getDes() {
+        return des;
     }
 
-    public void setFlight(String flight) {
-        this.flight = flight;
-    }
-
-    public Date getDepartTime() {
-        return departTime;
-    }
-
-    public void setDepartTime(Date departTime) {
-        this.departTime = departTime;
-    }
-
-    public Date getDestinateTime() {
-        return destinateTime;
-    }
-
-    public void setDestinateTime(Date destinateTime) {
-        this.destinateTime = destinateTime;
+    public void setDes(String des) {
+        this.des = des;
     }
 
     public String getRemark() {
@@ -104,16 +85,23 @@ public class Route extends BaseEntity {
         this.remark = remark;
     }
 
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
     @Override
     public String toString() {
         return "Route{" +
                 "id=" + id +
-                ", departure='" + departure + '\'' +
-                ", destination='" + destination + '\'' +
-                ", flight='" + flight + '\'' +
-                ", departTime=" + departTime +
-                ", destinateTime=" + destinateTime +
+                ", name='" + name + '\'' +
+                ", dep='" + dep + '\'' +
+                ", des='" + des + '\'' +
                 ", remark='" + remark + '\'' +
+                ", flight=" + flight +
                 '}';
     }
 }
