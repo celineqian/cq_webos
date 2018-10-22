@@ -10,7 +10,7 @@ import java.util.Date;
  * @create: 2018-10-21 20:11
  **/
 @Entity
-@Table(name = "f_flight")
+@Table(name = "t_flight")
 public class Flight extends BaseEntity {
 
     @Id
@@ -28,7 +28,7 @@ public class Flight extends BaseEntity {
     private String depCode;
 
     /**
-     * 到达地
+     * 目的地
      */
     private String desCode;
 
@@ -50,27 +50,12 @@ public class Flight extends BaseEntity {
     /**
      * 航班状态
      */
-    private String status;
+    private Integer status;
 
     /**
      * 备注
      */
     private String remark;
-
-    @Override
-    public String toString() {
-        return "Flight{" +
-                "id=" + id +
-                ", flightNo='" + flightNo + '\'' +
-                ", depCode='" + depCode + '\'' +
-                ", desCode='" + desCode + '\'' +
-                ", depTime=" + depTime +
-                ", desTime=" + desTime +
-                ", airline='" + airline + '\'' +
-                ", status='" + status + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -128,11 +113,11 @@ public class Flight extends BaseEntity {
         this.airline = airline;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -142,6 +127,21 @@ public class Flight extends BaseEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", flightNo='" + flightNo + '\'' +
+                ", depCode='" + depCode + '\'' +
+                ", desCode='" + desCode + '\'' +
+                ", depTime=" + depTime +
+                ", desTime=" + desTime +
+                ", airline='" + airline + '\'' +
+                ", status=" + status +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }
 

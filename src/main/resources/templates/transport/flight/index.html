@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flight List</title>
+    <#include "/header.html">
+</head>
+<body>
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+    <!-- START PAGE SIDEBAR -->
+    <#include "/siderbar.html">
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        <#include "/navigation.html">
+
+        <ul class="breadcrumb">
+            <li>
+                <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
+            </li>
+            <li>
+                <span class="fa fa-user-circle-o"></span>&nbsp;<@spring.message "FlightM"/>
+            </li>
+            <li>
+                <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
+                </span>
+            </li>
+        </ul>
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="panel-body">
+                            <@shiro.hasPermission name="transport:flight:add">
+                            <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
+                        </@shiro.hasPermission>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-actions" id="tableList"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<!-- MESSAGE BOX-->
+<#include "/messagebox.html">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tableList").bootstrapTable({
+            //使用get请求到服务器获取数据
+            method: "POST",
+            //必须设置，不然request.getParameter获取不到请求参数
+            contentType: "application/x-www-form-urlencoded",
+            //获取数据的Servlet地址
+            url: "${ctxPath}/transport/flight/list",
+            //表格显示条纹
+            striped: true,
+            //启动分页
+            pagination: true,
+            //每页显示的记录数
+            pageSize: 10,
+            //当前第几页
+            pageNumber: 1,
+            //记录数可选列表
+            pageList: [5, 10, 15, 20, 25],
+            search: true,
+            //表示服务端请求
+            sidePagination: "server",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            //设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: "undefined",
+            //json数据解析
+            responseHandler: function(res) {
+                return {
+                    "rows": res.content,
+                    "total": res.totalElements
+                };
+            },
+            //数据列
+            columns: [
+                {title: "ID", field: "id", sortable: true},
+                {title: "航班号", field: "flightNo"},
+                {title: "起飞地", field: "depCode"},
+                {title: "起飞时间", field: "depTime",
+                    formatter: function (value, row, index) {
+                        var date = new Date(value);
+                        return date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes();
+                    }},
+                {title: "目的地", field: "desCode"},
+                {title: "到达时间", field: "desTime",
+                    formatter: function (value, row, index) {
+                        var date = new Date(value);
+                        return date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes();
+                    }},
+                {title: "航空公司", field: "airline"},
+                {title: "状态", field: "status",
+                    formatter: function (value, row, index) {
+                        if (value == '0')
+                            return '<span class="label label-default">正常</span>';
+                        if (value == '1')
+                            return '<span class="label label-default">厌恶</span>';
+                    }},
+                {title: "备注", field: "remark"},
+                {
+                    title: "操作",
+                    field: "empty",
+                    formatter: function (value, row, index) {
+                        var operateHtml = '<@shiro.hasPermission name="transport:flight:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:flight:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
+                        return operateHtml;
+                    }
+                }]
+        });
+    });
+
+
+    function edit(id){
+        layer.open({
+            type: 2,
+            title: '航班修改',
+            shadeClose: true,
+            shade: false,
+            area: ['893px', '600px'],
+            content: '${ctxPath}/transport/flight/edit/'+ id,
+            end: function(index){
+                $('#tableList').bootstrapTable("refresh");
+            }
+        });
+    }
+
+    function add(){
+        layer.open({
+            type: 2,
+            title: '航班添加',
+            shadeClose: true,
+            shade: false,
+            area: ['893px', '600px'],
+            content: '${ctxPath!}/transport/flight/add',
+            end: function(index){
+                $('#tableList').bootstrapTable("refresh");
+            }
+        });
+    }
+    function del(id){
+        layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "${ctxPath!}/transport/flight/delete/" + id,
+                success: function(msg){
+                    layer.msg(msg.message, {time: 1000},function(){
+                        $('#tableList').bootstrapTable("refresh");
+                        layer.close(index);
+                    });
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

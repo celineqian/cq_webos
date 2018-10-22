@@ -56,11 +56,17 @@ INSERT INTO t_resource VALUES
 (27,'2018-10-20 11:21:54','司机管理',NULL,0,2,'司机管理',1,'transport:driver:index','/transport/driver/index',1,'2018-10-20 14:12:31',NULL),
 (28,'2018-10-20 11:21:54','司机添加',NULL,0,3,'司机添加',1,'transport:driver:add','/transport/driver/add',2,'2018-10-20 14:12:31',27),
 (29,'2018-10-20 11:21:54','司机编辑',NULL,0,3,'司机编辑',2,'transport:driver:edit','/transport/driver/edit*',2,'2018-10-20 14:12:31',27),
-(30,'2018-10-20 11:21:54','司机删除',NULL,0,3,'司机删除',3,'transport:driver:delete','/transport/driver/delete',2,'2018-10-20 14:12:31',27);
+(30,'2018-10-20 11:21:54','司机删除',NULL,0,3,'司机删除',3,'transport:driver:delete','/transport/driver/delete',2,'2018-10-20 14:12:31',27),
 
-(31,'2018-10-20 11:21:54','系统管理',NULL,0,1,'系统管理',1,'system','#',1,'2018-10-20 14:12:31',NULL),
+(31,'2018-10-22 11:21:54','航班管理',NULL,0,2,'航班管理',1,'transport:flight:index','/transport/flight/index',1,'2018-10-22 14:12:31',NULL),
+(32,'2018-10-22 11:21:54','航班添加',NULL,0,3,'航班添加',1,'transport:flight:add','/transport/flight/add',1,'2018-10-22 14:12:31',31),
+(33,'2018-10-22 11:21:54','航班编辑',NULL,0,3,'航班编辑',2,'transport:flight:edit','/transport/flight/edit',1,'2018-10-22 14:12:31',31),
+(34,'2018-10-22 11:21:54','航班删除',NULL,0,3,'航班删除',3,'transport:flight:delete','/transport/flight/delete',1,'2018-10-22 14:12:31',31),
 
-(32,'2018-10-20 11:21:54','交通管理',NULL,0,1,'交通管理',1,'transport','#',1,'2018-10-20 14:12:31',NULL);
+(35,'2018-10-22 11:21:54','路线管理',NULL,0,2,'路线管理',1,'transport:route:index','/transport/route/index',1,'2018-10-22 14:12:31',NULL),
+(36,'2018-10-22 11:21:54','路线添加',NULL,0,3,'路线添加',1,'transport:route:add','/transport/route/add',1,'2018-10-22 14:12:31',35),
+(37,'2018-10-22 11:21:54','路线编辑',NULL,0,3,'路线编辑',2,'transport:route:edit','/transport/route/edit',1,'2018-10-22 14:12:31',35),
+(38,'2018-10-22 11:21:54','路线删除',NULL,0,3,'路线删除',3,'transport:route:delete','/transport/route/delete',1,'2018-10-22 14:12:31',35);
 
 -- ----------------------------
 -- Records of t_user_role
