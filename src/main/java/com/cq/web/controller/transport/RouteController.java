@@ -92,6 +92,8 @@ public class RouteController extends BaseController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
         Route route = routeService.find(id);
+        List<Flight> flights = flightService.findAll();
+        map.put("flights",flights);
         map.put("route", route);
         return "transport/route/form";
     }

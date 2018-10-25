@@ -97,7 +97,13 @@
                 {title: "出发地", field: "dep"},
                 {title: "目的地", field: "des"},
                 {title: "备注", field: "remark"},
-                {title: "关联航班", field: "flight"},
+                {
+                    title: "关联航班",
+                    field: "flight.flightNo",
+                    formatter: function (value, row, index) {
+                        return '<a href="#">'+value+'</a>';
+                    }
+                },
                 {
                     title: "操作",
                     field: "empty",
