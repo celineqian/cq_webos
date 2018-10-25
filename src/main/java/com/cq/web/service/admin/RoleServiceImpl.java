@@ -1,6 +1,7 @@
 package com.cq.web.service.admin;
 
 import com.cq.web.constant.AccountStatus;
+import com.cq.web.constant.Const;
 import com.cq.web.entity.admin.Resource;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.repository.BaseRepository;
@@ -54,7 +55,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
 
     public void delete(Integer id){
         Role role = find(id);
-        Assert.state(!"administrator".equals(role.getRoleKey()),"[WARNING!] Administrator Role can not be deleted!");
+        Assert.state(!Const.ADMIN_ROLE_NAME.equals(role.getRoleKey()),"[WARNING!] Administrator Role can not be deleted!");
         super.delete(role);
     }
 
@@ -62,7 +63,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
     public void grant(Integer id, String[] resourceIds) {
         Role role = find(id);
         Assert.notNull(role,"[WARNING!] Role does not exist!");
-        //Assert.state(!"administrator".equals(role.getRoleKey()),"超级管理员角色不能进行资源分配");
+        Assert.state(!Const.ADMIN_ROLE_NAME.equals(role.getRoleKey()),"超级管理员角色不能进行资源分配");
         Resource resource;
         Set<Resource> resources = new HashSet<Resource>();
         if(resourceIds != null) {

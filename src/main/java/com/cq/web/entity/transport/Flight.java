@@ -35,12 +35,12 @@ public class Flight extends BaseEntity {
     /**
      * 起飞时间
      */
-    private Date depTime;
+    private String depTime;
 
     /**
      * 到达时间
      */
-    private Date desTime;
+    private String desTime;
 
     /**
      * 航空公司
@@ -89,19 +89,19 @@ public class Flight extends BaseEntity {
         this.desCode = desCode;
     }
 
-    public Date getDepTime() {
+    public String getDepTime() {
         return depTime;
     }
 
-    public void setDepTime(Date depTime) {
+    public void setDepTime(String depTime) {
         this.depTime = depTime;
     }
 
-    public Date getDesTime() {
+    public String getDesTime() {
         return desTime;
     }
 
-    public void setDesTime(Date desTime) {
+    public void setDesTime(String desTime) {
         this.desTime = desTime;
     }
 
@@ -136,8 +136,8 @@ public class Flight extends BaseEntity {
                 ", flightNo='" + flightNo + '\'' +
                 ", depCode='" + depCode + '\'' +
                 ", desCode='" + desCode + '\'' +
-                ", depTime=" + depTime +
-                ", desTime=" + desTime +
+                ", depTime='" + depTime + '\'' +
+                ", desTime='" + desTime + '\'' +
                 ", airline='" + airline + '\'' +
                 ", status=" + status +
                 ", remark='" + remark + '\'' +

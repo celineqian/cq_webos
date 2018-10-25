@@ -5,7 +5,9 @@ import com.cq.web.common.JsonResult;
 import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
+import com.cq.web.entity.transport.Flight;
 import com.cq.web.entity.transport.Route;
+import com.cq.web.service.transport.FlightService;
 import com.cq.web.service.transport.RouteService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author: Celine Q
@@ -28,6 +33,8 @@ public class RouteController extends BaseController {
     @Autowired
     private RouteService routeService;
 
+    @Autowired
+    private FlightService flightService;
     /**
      * 路线首页
      */
@@ -58,6 +65,8 @@ public class RouteController extends BaseController {
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
+        List<Flight> flights = flightService.findAll();
+        map.put("flights", flights);
         return "transport/route/add";
     }
 

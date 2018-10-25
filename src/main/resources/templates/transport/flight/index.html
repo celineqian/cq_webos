@@ -95,17 +95,9 @@
                 {title: "ID", field: "id", sortable: true},
                 {title: "航班号", field: "flightNo"},
                 {title: "起飞地", field: "depCode"},
-                {title: "起飞时间", field: "depTime",
-                    formatter: function (value, row, index) {
-                        var date = new Date(value);
-                        return date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes();
-                    }},
+                {title: "起飞时间", field: "depTime"},
                 {title: "目的地", field: "desCode"},
-                {title: "到达时间", field: "desTime",
-                    formatter: function (value, row, index) {
-                        var date = new Date(value);
-                        return date.getDate() + ' ' + date.getHours() + ':'+ date.getMinutes();
-                    }},
+                {title: "到达时间", field: "desTime"},
                 {title: "航空公司", field: "airline"},
                 {title: "状态", field: "status",
                     formatter: function (value, row, index) {

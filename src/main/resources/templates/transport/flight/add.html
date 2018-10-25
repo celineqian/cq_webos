@@ -32,8 +32,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">起飞时间:</label>
-                                <div class="col-md-9 bootstrap-timepicker">
-                                    <input type="text" class="form-control timepicker24" name="depTime" id="depTime" value="${flight.depTime}"/>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control timepicker" name="depTime" id="depTime" value="${flight.depTime}"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -44,8 +44,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">到达时间:</label>
-                                <div class="col-md-9 bootstrap-timepicker">
-                                    <input type="text" class="form-control timepicker24" name="desTime" id="desTime" value="${flight.desTime}"/>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control timepicker" name="desTime" id="depTime" value="${flight.desTime}"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -92,13 +92,13 @@
             depCode: {
                 required: true
             },
-            depTime: {
-                required: true
-            },
             desCode: {
                 required: true
             },
             desTime: {
+                required: true
+            },
+            depTime: {
                 required: true
             }
         },
