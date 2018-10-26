@@ -2,6 +2,7 @@ package com.cq.web.service.admin;
 
 import com.cq.web.common.MD5Utils;
 import com.cq.web.constant.AccountStatus;
+import com.cq.web.constant.Const;
 import com.cq.web.entity.admin.Role;
 import com.cq.web.entity.admin.User;
 import com.cq.web.repository.BaseRepository;
@@ -45,7 +46,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
             user.setCreateDate(new Date());
             user.setUpdateDate(new Date());
             user.setStatus(AccountStatus.OK.getCode());
-            user.setPassword(MD5Utils.md5(null == user.getPassword() ? "111111" : user.getPassword()));
+            user.setPassword(MD5Utils.md5(null == user.getPassword() ? Const.DEFAULT_PSW : user.getPassword()));
             save(user);
         }
     }
@@ -58,16 +59,20 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
 
     public void delete(Integer id) {
         User user = userRepository.findOne(id);
-        Assert.state(!"celine".equals(user.getUserName()),"[WARNING!]Can't delete administrator!");
-        super.delete(id);
-
+        Set<Role> roles = user.getRoles();
+        for (Role r : roles){
+            if(Const.ADMIN_ROLE_NAME.equals(r.getRoleKey()))
+                throw new IllegalStateException("[WARNING!]Can't delete administrator!");
+            else
+                super.delete(id);
+        }
     }
 
     @Override
     public void grant(Integer id, String[] roleIds) {
         User user = userRepository.findOne(id);
         Assert.notNull(user,"[WARNING!] User does not exist!");
-//        Assert.state(!"celine".equals(user.getUserName()),"[WARNING!] Administrator can not edit role");
+//        Assert.state(!Const.ADMIN_NAME_C.equals(user.getUserName()),"[WARNING!] Administrator can not be edited");
         Role role;
         Set<Role> roles = new HashSet<Role>();
         if(roleIds != null) {
@@ -79,7 +84,6 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
         }
         user.setRoles(roles);
         update(user);
-
     }
 
 

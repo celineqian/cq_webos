@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -59,7 +60,6 @@ public class RouteController extends BaseController {
         return page;
     }
 
-
     /**
      * 路线添加页跳转
      */
@@ -77,9 +77,9 @@ public class RouteController extends BaseController {
     @SystemLog(value = "路线添加")
     @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add(Route route, ModelMap map){
+    public JsonResult add(Route route,String[] flightIds, ModelMap map){
         try {
-            routeService.saveOrUpdate(route);
+            routeService.saveOrUpdate(route,flightIds);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
@@ -92,9 +92,15 @@ public class RouteController extends BaseController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
         Route route = routeService.find(id);
+        map.put("route", route);
+        Set<Flight> set = route.getFlights();
+        List<Integer> flightIds = new ArrayList<Integer>();
+        for(Flight flight : set){
+            flightIds.add(flight.getId());
+        }
+        map.put("flightIds",flightIds);
         List<Flight> flights = flightService.findAll();
         map.put("flights",flights);
-        map.put("route", route);
         return "transport/route/form";
     }
 
@@ -104,9 +110,9 @@ public class RouteController extends BaseController {
     @SystemLog(value = "路线编辑")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult edit(Route route, ModelMap map){
+    public JsonResult edit(Route route,String[] flightIds, ModelMap map){
         try {
-            routeService.saveOrUpdate(route);
+            routeService.saveOrUpdate(route,flightIds);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }

@@ -9,4 +9,8 @@ public interface Const {
     String ADMIN_ROLE_NAME = "administrator";
 
     String ADMIN_NAME = "admin";
+
+    String ADMIN_NAME_C = "celine";
+
+    String DEFAULT_PSW = "111111";
 }

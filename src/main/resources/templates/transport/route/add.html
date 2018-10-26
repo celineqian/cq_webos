@@ -44,13 +44,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">关联航班:</label>
+                                <#list flights as flight>
                                 <div class="col-md-9">
-                                    <select name="flight.id" class="form-control">
-                                        <#list flights as f>
-                                        <option value="${f.id}" <#if route.flight.id == f.id>selected="selected"</#if>>${f.flightNo}: ${f.depCode} -- ${f.desCode}</option>
-                                        </#list>
-                                    </select>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="${flight.id}" name="flightIds"> <i></i> ${flight.flightNo}: ${flight.depCode} -- ${flight.desCode}
+                                        </label>
+                                    </div>
                                 </div>
+                                </#list>
                             </div>
                             <div class="btn-group pull-right">
                                 <button class="btn btn-primary" type="submit"><@spring.message "Submit"/></button>

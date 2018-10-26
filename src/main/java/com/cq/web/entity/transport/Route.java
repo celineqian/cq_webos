@@ -1,9 +1,8 @@
 package com.cq.web.entity.transport;
 
 import com.cq.web.entity.BaseEntity;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Set;
 
 /**
  * 路线
@@ -41,9 +40,10 @@ public class Route extends BaseEntity {
     /**
      * 关联航班
      */
-    @ManyToOne
-    private Flight flight;
 
+    @ManyToMany(cascade = {CascadeType.REFRESH} , fetch = FetchType.LAZY)
+    @JoinTable(name = "t_route_flight" , joinColumns = {@JoinColumn(name = "route_id")},inverseJoinColumns = {@JoinColumn(name = "flight_id")})
+    private Set<Flight> flights;
 
     public Integer getId() {
         return id;
@@ -85,12 +85,12 @@ public class Route extends BaseEntity {
         this.remark = remark;
     }
 
-    public Flight getFlight() {
-        return flight;
+    public Set<Flight> getFlights() {
+        return flights;
     }
 
-    public void setFlight(Flight flight) {
-        this.flight = flight;
+    public void setFlights(Set<Flight> flights) {
+        this.flights = flights;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Route extends BaseEntity {
                 ", dep='" + dep + '\'' +
                 ", des='" + des + '\'' +
                 ", remark='" + remark + '\'' +
-                ", flight=" + flight +
+                ", flights=" + flights +
                 '}';
     }
 }
