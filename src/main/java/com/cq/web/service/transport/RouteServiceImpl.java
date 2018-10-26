@@ -32,21 +32,6 @@ public class RouteServiceImpl extends BaseServiceImpl<Route,Integer> implements 
 
 
     @Override
-    public void saveOrUpdate(Route route) {
-        if(route.getId() !=null ){
-            Route r = routeRepository.findOne(route.getId());
-            r.setName(route.getName());
-            r.setFlights(route.getFlights());
-            r.setDes(route.getDes());
-            r.setDep(route.getDep());
-            r.setRemark(route.getRemark());
-            update(r);
-        }else
-            save(route);
-
-    }
-
-    @Override
     public void saveOrUpdate(Route route, String[] ids) {
         Set<Flight> flights = new HashSet<Flight>();
         Flight flight;

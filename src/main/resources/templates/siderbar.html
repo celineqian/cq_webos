@@ -48,6 +48,9 @@
                 <@shiro.hasPermission name="transport:route:index">
                 <li><a href="${ctxPath!}/transport/route/index"><span class="fa fa-random"></span><@spring.message "RouteM"/></a></li>
                 </@shiro.hasPermission>
+                <@shiro.hasPermission name="transport:shift:index">
+                <li><a href="${ctxPath!}/transport/shift/index"><span class="fa fa-random"></span><@spring.message "ShiftM"/></a></li>
+                </@shiro.hasPermission>
             </ul>
         </li>
     </ul>

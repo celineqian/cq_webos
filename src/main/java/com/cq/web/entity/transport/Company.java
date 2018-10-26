@@ -23,6 +23,11 @@ public class Company extends BaseEntity {
     private String name;
 
     /**
+     * 英文名
+     */
+    private String eName;
+
+    /**
      * 公司地址
      */
     private String address;
@@ -31,9 +36,8 @@ public class Company extends BaseEntity {
      * 公司联系人
      */
     @OneToMany
-    @JoinTable(name = "t_company_contact" , joinColumns = {@JoinColumn(name = "company_id")},inverseJoinColumns = {@JoinColumn(name = "contact_id")})
+    @JoinTable(name = "t_company_contact", joinColumns = {@JoinColumn(name = "company_id")}, inverseJoinColumns = {@JoinColumn(name = "contact_id")})
     private Set<Person> contacts;
-
 
     public Integer getId() {
         return id;
@@ -49,6 +53,14 @@ public class Company extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String geteName() {
+        return eName;
+    }
+
+    public void seteName(String eName) {
+        this.eName = eName;
     }
 
     public String getAddress() {
@@ -72,6 +84,7 @@ public class Company extends BaseEntity {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", eName='" + eName + '\'' +
                 ", address='" + address + '\'' +
                 ", contacts=" + contacts +
                 '}';

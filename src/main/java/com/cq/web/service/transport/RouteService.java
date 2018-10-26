@@ -9,7 +9,5 @@ import com.cq.web.service.BaseService;
  **/
 public interface RouteService extends BaseService<Route,Integer> {
 
-    void saveOrUpdate(Route route);
-
     void saveOrUpdate(Route route, String[] ids);
 }

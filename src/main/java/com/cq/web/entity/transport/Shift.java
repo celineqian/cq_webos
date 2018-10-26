@@ -37,11 +37,15 @@ public class Shift extends BaseEntity {
     @ManyToOne
     private Route route;
 
-
     /**
      * 班次时间
      */
     private Date shiftDate;
+
+    /**
+     * 班次状态
+     */
+    private Integer status;
 
     /**
      * 班次乘客
@@ -49,6 +53,13 @@ public class Shift extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "t_shift_passenger" , joinColumns = {@JoinColumn(name = "shift_id")},inverseJoinColumns = {@JoinColumn(name = "passenger_id")})
     private Set<Person> passengers;
+
+    /**
+     * 班次成本花费
+     */
+    @ManyToMany
+    @JoinTable(name = "t_shift_expense" , joinColumns = {@JoinColumn(name = "shift_id")},inverseJoinColumns = {@JoinColumn(name = "expense_id")})
+    private Set<Expense> expenses;
 
     public Integer getId() {
         return id;
@@ -90,12 +101,28 @@ public class Shift extends BaseEntity {
         this.shiftDate = shiftDate;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Set<Person> getPassengers() {
         return passengers;
     }
 
     public void setPassengers(Set<Person> passengers) {
         this.passengers = passengers;
+    }
+
+    public Set<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(Set<Expense> expenses) {
+        this.expenses = expenses;
     }
 
     @Override
@@ -106,7 +133,9 @@ public class Shift extends BaseEntity {
                 ", vehicle=" + vehicle +
                 ", route=" + route +
                 ", shiftDate=" + shiftDate +
+                ", status=" + status +
                 ", passengers=" + passengers +
+                ", expenses=" + expenses +
                 '}';
     }
 }
