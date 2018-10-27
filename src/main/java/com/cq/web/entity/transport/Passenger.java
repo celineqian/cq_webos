@@ -10,8 +10,8 @@ import javax.persistence.*;
  * @Create 17/10/2018 5:52 PM
  **/
 @Entity
-@Table(name = "t_person")
-public class Person extends BaseEntity {
+@Table(name = "t_passenger")
+public class Passenger extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,7 +80,7 @@ public class Person extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Passenger{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +

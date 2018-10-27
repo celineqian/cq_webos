@@ -16,7 +16,7 @@
                 <!-- START JQUERY VALIDATION PLUGIN -->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form id="jvalidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/transport/shift/add">
+                        <form id="jvalidate" role="form" method="post" class="form-horizontal" action="${ctxPath!}/transport/shift/edit">
                             <input type="hidden" id="id" name="id" value="${shift.id}">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">班次日期:</label>
@@ -29,7 +29,7 @@
                                 <div class="col-md-9">
                                     <select name="driver.id" class="form-control">
                                         <#list drivers as d>
-                                        <option value="${d.id}" <#if shift.dirver.id == d.id>selected="selected"</#if>> ${d.name} | ${d.phone}</option>
+                                        <option value="${d.id}" <#if shift.driver.id == d.id>selected="selected"</#if>> ${d.name} | ${d.phone}</option>
                                         </#list>
                                     </select>
                                 </div>
@@ -90,7 +90,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "${ctxPath!}/transport/shift/add",
+                url: "${ctxPath!}/transport/shift/edit",
                 data: $(form).serialize(),
                 success: function(msg){
                     layer.msg(msg.message, {time: 1000},function(){

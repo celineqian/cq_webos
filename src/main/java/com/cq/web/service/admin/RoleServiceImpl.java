@@ -63,7 +63,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements R
     public void grant(Integer id, String[] resourceIds) {
         Role role = find(id);
         Assert.notNull(role,"[WARNING!] Role does not exist!");
-        Assert.state(!Const.ADMIN_ROLE_NAME.equals(role.getRoleKey()),"超级管理员角色不能进行资源分配");
+//        Assert.state(!Const.ADMIN_ROLE_NAME.equals(role.getRoleKey()),"超级管理员角色不能进行资源分配");
         Resource resource;
         Set<Resource> resources = new HashSet<Resource>();
         if(resourceIds != null) {

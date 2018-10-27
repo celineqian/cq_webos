@@ -52,7 +52,7 @@ public class Shift extends BaseEntity {
      */
     @ManyToMany
     @JoinTable(name = "t_shift_passenger" , joinColumns = {@JoinColumn(name = "shift_id")},inverseJoinColumns = {@JoinColumn(name = "passenger_id")})
-    private Set<Person> passengers;
+    private Set<Passenger> passengers;
 
     /**
      * 班次成本花费
@@ -109,11 +109,11 @@ public class Shift extends BaseEntity {
         this.status = status;
     }
 
-    public Set<Person> getPassengers() {
+    public Set<Passenger> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(Set<Person> passengers) {
+    public void setPassengers(Set<Passenger> passengers) {
         this.passengers = passengers;
     }
 

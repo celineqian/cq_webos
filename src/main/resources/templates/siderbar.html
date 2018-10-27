@@ -49,7 +49,10 @@
                 <li><a href="${ctxPath!}/transport/route/index"><span class="fa fa-random"></span><@spring.message "RouteM"/></a></li>
                 </@shiro.hasPermission>
                 <@shiro.hasPermission name="transport:shift:index">
-                <li><a href="${ctxPath!}/transport/shift/index"><span class="fa fa-random"></span><@spring.message "ShiftM"/></a></li>
+                <li><a href="${ctxPath!}/transport/shift/index"><span class="fa fa-file-text-o"></span><@spring.message "ShiftM"/></a></li>
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name="transport:passenger:index">
+                <li><a href="${ctxPath!}/transport/passenger/index"><span class="fa fa-users"></span><@spring.message "PassengerM"/></a></li>
                 </@shiro.hasPermission>
             </ul>
         </li>

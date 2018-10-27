@@ -5,10 +5,7 @@ import com.cq.web.common.JsonResult;
 import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
-import com.cq.web.entity.transport.Driver;
-import com.cq.web.entity.transport.Route;
-import com.cq.web.entity.transport.Shift;
-import com.cq.web.entity.transport.Vehicle;
+import com.cq.web.entity.transport.*;
 import com.cq.web.repository.transport.DriverRepository;
 import com.cq.web.repository.transport.ShiftRepository;
 import com.cq.web.repository.transport.VehicleRepository;
@@ -21,11 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author Celine Q
@@ -101,5 +101,43 @@ public class ShiftController extends BaseController {
     }
 
 
+    /**
+     * 班次编辑页跳转
+     */
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap map) {
+        Shift shift = shiftService.find(id);
+        map.put("shift", shift);
+        List<Driver> drivers = driverService.findAll();
+        map.put("drivers" , drivers);
+        List<Vehicle> vehicles = vehicleService.findAll();
+        map.put("vehicles" , vehicles);
+        List<Route> routes = routeService.findAll();
+        map.put("routes" , routes);
+        return "transport/shift/form";
+    }
 
+    /**
+     * 班次编辑
+     */
+    @SystemLog(value = "班次编辑")
+    @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult edit(Shift shift , ModelMap map){
+        try {
+            shiftService.saveOrUpdate(shift);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    /**
+     * 添加乘客跳转
+     */
+    public String addPassenger(@PathVariable Integer id, ModelMap map){
+        Shift shift = shiftService.find(id);
+        map.put("shift",shift);
+        return "transport/shift/addP";
+    }
 }

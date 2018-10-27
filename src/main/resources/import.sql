@@ -66,14 +66,20 @@ INSERT INTO t_resource VALUES
 (35,'2018-10-22 11:21:54','路线管理',NULL,0,2,'路线管理',1,'transport:route:index','/transport/route/index',1,'2018-10-22 14:12:31',NULL),
 (36,'2018-10-22 11:21:54','路线添加',NULL,0,3,'路线添加',1,'transport:route:add','/transport/route/add',2,'2018-10-22 14:12:31',35),
 (37,'2018-10-22 11:21:54','路线编辑',NULL,0,3,'路线编辑',2,'transport:route:edit','/transport/route/edit',2,'2018-10-22 14:12:31',35),
-(38,'2018-10-22 11:21:54','路线删除',NULL,0,3,'路线删除',3,'transport:route:delete','/transport/route/delete',2,'2018-10-22 14:12:31',35);
+(38,'2018-10-22 11:21:54','路线删除',NULL,0,3,'路线删除',3,'transport:route:delete','/transport/route/delete',2,'2018-10-22 14:12:31',35),
 
 (39,'2018-10-26 11:21:54','班次管理',NULL,0,2,'班次管理',1,'transport:shift:index','/transport/shift/index',1,'2018-10-26 17:12:31',NULL),
 (40,'2018-10-26 11:21:54','班次添加',NULL,0,3,'班次添加',1,'transport:shift:add','/transport/shift/add',2,'2018-10-26 17:12:31',39),
 (41,'2018-10-26 11:21:54','班次编辑',NULL,0,3,'班次编辑',2,'transport:shift:edit','/transport/shift/edit',2,'2018-10-26 17:12:31',39),
-(42,'2018-10-26 11:21:54','班次删除',NULL,0,3,'班次删除',3,'transport:shift:delete','/transport/shift/delete',2,'2018-10-26 17:12:31',39);
-(43,'2018-10-26 11:21:54','添加乘客',NULL,0,3,'添加乘客',4,'transport:shift:addPassenger','/transport/shift/addPassenger',2,'2018-10-26 17:12:31',39);
+(42,'2018-10-26 11:21:54','班次删除',NULL,0,3,'班次删除',3,'transport:shift:delete','/transport/shift/delete',2,'2018-10-26 17:12:31',39),
+(43,'2018-10-26 11:21:54','班次乘客',NULL,0,3,'班次乘客',4,'transport:shift:addPassenger','/transport/shift/addPassenger',2,'2018-10-26 17:12:31',39),
 (44,'2018-10-26 11:21:54','班次结算',NULL,0,3,'班次结算',5,'transport:shift:settle','/transport/shift/settle',2,'2018-10-26 17:12:31',39);
+
+(45,'2018-10-27 11:21:54','乘客管理',NULL,0,2,'乘客管理',1,'transport:Passenger:index','/transport/Passenger/index',1,'2018-10-27 14:12:31',NULL),
+(46,'2018-10-27 11:21:54','乘客添加',NULL,0,3,'乘客添加',1,'transport:Passenger:add','/transport/Passenger/add',2,'2018-10-27 14:12:31',45),
+(47,'2018-10-27 11:21:54','乘客编辑',NULL,0,3,'乘客编辑',2,'transport:Passenger:edit','/transport/Passenger/edit',2,'2018-10-27 14:12:31',45),
+(48,'2018-10-27 11:21:54','乘客删除',NULL,0,3,'乘客删除',3,'transport:Passenger:delete','/transport/Passenger/delete',2,'2018-10-27 14:12:31',45),
+
 
 -- ----------------------------
 -- Records of t_user_role

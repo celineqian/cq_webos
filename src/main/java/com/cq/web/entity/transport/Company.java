@@ -37,7 +37,7 @@ public class Company extends BaseEntity {
      */
     @OneToMany
     @JoinTable(name = "t_company_contact", joinColumns = {@JoinColumn(name = "company_id")}, inverseJoinColumns = {@JoinColumn(name = "contact_id")})
-    private Set<Person> contacts;
+    private Set<Passenger> contacts;
 
     public Integer getId() {
         return id;
@@ -71,11 +71,11 @@ public class Company extends BaseEntity {
         this.address = address;
     }
 
-    public Set<Person> getContacts() {
+    public Set<Passenger> getContacts() {
         return contacts;
     }
 
-    public void setContacts(Set<Person> contacts) {
+    public void setContacts(Set<Passenger> contacts) {
         this.contacts = contacts;
     }
 
