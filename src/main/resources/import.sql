@@ -75,10 +75,15 @@ INSERT INTO t_resource VALUES
 (43,'2018-10-26 11:21:54','班次乘客',NULL,0,3,'班次乘客',4,'transport:shift:addPassenger','/transport/shift/addPassenger',2,'2018-10-26 17:12:31',39),
 (44,'2018-10-26 11:21:54','班次结算',NULL,0,3,'班次结算',5,'transport:shift:settle','/transport/shift/settle',2,'2018-10-26 17:12:31',39);
 
-(45,'2018-10-27 11:21:54','乘客管理',NULL,0,2,'乘客管理',1,'transport:Passenger:index','/transport/Passenger/index',1,'2018-10-27 14:12:31',NULL),
-(46,'2018-10-27 11:21:54','乘客添加',NULL,0,3,'乘客添加',1,'transport:Passenger:add','/transport/Passenger/add',2,'2018-10-27 14:12:31',45),
-(47,'2018-10-27 11:21:54','乘客编辑',NULL,0,3,'乘客编辑',2,'transport:Passenger:edit','/transport/Passenger/edit',2,'2018-10-27 14:12:31',45),
-(48,'2018-10-27 11:21:54','乘客删除',NULL,0,3,'乘客删除',3,'transport:Passenger:delete','/transport/Passenger/delete',2,'2018-10-27 14:12:31',45),
+(45,'2018-10-27 11:21:54','乘客管理',NULL,0,2,'乘客管理',1,'transport:passenger:index','/transport/passenger/index',1,'2018-10-27 14:12:31',NULL),
+(46,'2018-10-27 11:21:54','乘客添加',NULL,0,3,'乘客添加',1,'transport:passenger:add','/transport/passenger/add',2,'2018-10-27 14:12:31',45),
+(47,'2018-10-27 11:21:54','乘客编辑',NULL,0,3,'乘客编辑',2,'transport:passenger:edit','/transport/passenger/edit',2,'2018-10-27 14:12:31',45),
+(48,'2018-10-27 11:21:54','乘客删除',NULL,0,3,'乘客删除',3,'transport:passenger:delete','/transport/passenger/delete',2,'2018-10-27 14:12:31',45),
+
+(49,'2018-10-29 11:21:54','公司管理',NULL,0,2,'公司管理',1,'transport:company:index','/transport/company/index',1,'2018-10-29 14:12:31',NULL),
+(50,'2018-10-29 11:21:54','公司添加',NULL,0,3,'公司添加',1,'transport:company:add','/transport/company/add',2,'2018-10-29 14:12:31',49),
+(51,'2018-10-29 11:21:54','公司编辑',NULL,0,3,'公司编辑',2,'transport:company:edit','/transport/company/edit',2,'2018-10-29 14:12:31',49),
+(52,'2018-10-29 11:21:54','公司删除',NULL,0,3,'公司删除',3,'transport:company:delete','/transport/company/delete',2,'2018-10-29 14:12:31',49),
 
 
 -- ----------------------------

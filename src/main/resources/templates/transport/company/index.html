@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Passenger List</title>
+    <title>Company List</title>
     <#include "/header.html">
 </head>
 <body>
@@ -19,7 +19,7 @@
                 <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
             </li>
             <li>
-                <span class="fa fa-user-circle-o"></span>&nbsp;<@spring.message "PassengerM"/>
+                <span class="fa fa-user-circle-o"></span>&nbsp;<@spring.message "CompanyM"/>
             </li>
             <li>
                 <span>Welcome <@shiro.principal type="com.cq.web.entity.admin.User" property="nickName"/>
@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="panel-body">
-                            <@shiro.hasPermission name="transport:passenger:add">
+                            <@shiro.hasPermission name="transport:company:add">
                             <button class="btn btn-primary  btn-xs" type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;<@spring.message "Add"/></button>
                         </@shiro.hasPermission>
                     </div>
@@ -65,7 +65,7 @@
             //必须设置，不然request.getParameter获取不到请求参数
             contentType: "application/x-www-form-urlencoded",
             //获取数据的Servlet地址
-            url: "${ctxPath}/transport/passenger/list",
+            url: "${ctxPath}/transport/company/list",
             //表格显示条纹
             striped: true,
             //启动分页
@@ -92,16 +92,14 @@
             //数据列
             columns: [
                 {title: "ID", field: "id", sortable: true},
-                {title: "姓名", field: "name"},
-                {title: "电话", field: "phone"},
+                {title: "公司名", field: "name"},
                 {title: "地址", field: "address"},
-                {title: "所属公司", field: "company.name"},
                 {
                     title: "操作",
                     field: "empty",
                     formatter: function (value, row, index) {
-                        var operateHtml = '<@shiro.hasPermission name="transport:passenger:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:passenger:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
+                        var operateHtml = '<@shiro.hasPermission name="transport:company:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
+                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:company:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
                     }
                 }]
@@ -112,11 +110,11 @@
     function edit(id){
         layer.open({
             type: 2,
-            title: '乘客修改',
+            title: '公司修改',
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],
-            content: '${ctxPath}/transport/passenger/edit/'+ id,
+            content: '${ctxPath}/transport/company/edit/'+ id,
             end: function(index){
                 $('#tableList').bootstrapTable("refresh");
             }
@@ -126,11 +124,11 @@
     function add(){
         layer.open({
             type: 2,
-            title: '乘客添加',
+            title: '公司添加',
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],
-            content: '${ctxPath!}/transport/passenger/add',
+            content: '${ctxPath!}/transport/company/add',
             end: function(index){
                 $('#tableList').bootstrapTable("refresh");
             }
@@ -141,7 +139,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "${ctxPath!}/transport/passenger/delete/" + id,
+                url: "${ctxPath!}/transport/company/delete/" + id,
                 success: function(msg){
                     layer.msg(msg.message, {time: 1000},function(){
                         $('#tableList').bootstrapTable("refresh");

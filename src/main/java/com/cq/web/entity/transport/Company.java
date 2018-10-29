@@ -23,21 +23,23 @@ public class Company extends BaseEntity {
     private String name;
 
     /**
-     * 英文名
-     */
-    private String eName;
-
-    /**
      * 公司地址
      */
     private String address;
 
     /**
-     * 公司联系人
+     * 公司电话
      */
-    @OneToMany
-    @JoinTable(name = "t_company_contact", joinColumns = {@JoinColumn(name = "company_id")}, inverseJoinColumns = {@JoinColumn(name = "contact_id")})
-    private Set<Passenger> contacts;
+    private String phone;
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Integer getId() {
         return id;
@@ -55,14 +57,6 @@ public class Company extends BaseEntity {
         this.name = name;
     }
 
-    public String geteName() {
-        return eName;
-    }
-
-    public void seteName(String eName) {
-        this.eName = eName;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -71,22 +65,15 @@ public class Company extends BaseEntity {
         this.address = address;
     }
 
-    public Set<Passenger> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Set<Passenger> contacts) {
-        this.contacts = contacts;
-    }
 
     @Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", eName='" + eName + '\'' +
                 ", address='" + address + '\'' +
-                ", contacts=" + contacts +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }
+

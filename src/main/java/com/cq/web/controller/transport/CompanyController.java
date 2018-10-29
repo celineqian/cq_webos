@@ -6,9 +6,7 @@ import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
 import com.cq.web.entity.transport.Company;
-import com.cq.web.entity.transport.Passenger;
 import com.cq.web.service.transport.CompanyService;
-import com.cq.web.service.transport.PassengerService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,67 +17,60 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 
 /**
  * @Author Celine Q
- * @Create 27/10/2018 10:59 AM
+ * @Create 29/10/2018 11:55 AM
  **/
 @Controller
-@RequestMapping("/transport/passenger")
-public class PassengerController extends BaseController {
+@RequestMapping("/transport/company")
+public class CompanyController extends BaseController {
+
 
     @Autowired
     private CompanyService companyService;
 
-    @Autowired
-    private PassengerService passengerService;
-
     /**
-     * 乘客首页
+     * 公司首页
      */
     @RequestMapping(value = "/index")
     public String index(){
-        return "transport/passenger/index";
+        return "transport/company/index";
     }
 
 
     /**
-     * 乘客列表页
+     * 公司列表页
      */
     @RequestMapping(value = { "/list" })
     @ResponseBody
-    public Page<Passenger> list(){
-        SimpleSpecificationBuilder<Passenger> builder = new SimpleSpecificationBuilder<Passenger>();
+    public Page<Company> list(){
+        SimpleSpecificationBuilder<Company> builder = new SimpleSpecificationBuilder<Company>();
         String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
             builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
         }
-        Page<Passenger> page = passengerService.findAll(builder.generateSpecification(),getPageRequest());
+        Page<Company> page = companyService.findAll(builder.generateSpecification(),getPageRequest());
         return page;
     }
 
-
     /**
-     * 乘客添加页跳转
+     * 公司添加页跳转
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        List<Company> companies = companyService.findAll();
-        map.put("companies" ,  companies);
-        return "transport/passenger/add";
+        return "transport/company/add";
     }
 
-
     /**
-     * 乘客添加
+     * 公司添加
      */
-    @SystemLog(value = "乘客添加")
+    @SystemLog(value = "公司添加")
     @RequestMapping(value= {"/add"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add(Passenger passenger, ModelMap map){
+    public JsonResult add(Company company, ModelMap map){
         try {
-            passengerService.saveOrUpdate(passenger);
+            companyService.saveOrUpdate(company);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
@@ -88,46 +79,47 @@ public class PassengerController extends BaseController {
 
 
     /**
-     * 乘客编辑页跳转
+     * 公司编辑页跳转
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
-        Passenger passenger  = passengerService.find(id);
-        map.put("passenger", passenger);
-        List<Company> companies = companyService.findAll();
-        map.put("companies" ,  companies);
-        return "transport/passenger/form";
+        Company company  = companyService.find(id);
+        map.put("company", company);
+        return "transport/company/form";
     }
 
     /**
-     * 乘客编辑
+     * 公司编辑
      */
-    @SystemLog(value = "乘客编辑")
+    @SystemLog(value = "公司编辑")
     @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult edit(Passenger passenger, ModelMap map){
+    public JsonResult edit(Company company, ModelMap map){
         try {
-            passengerService.saveOrUpdate(passenger);
+            companyService.saveOrUpdate(company);
         } catch (Exception e) {
             return JsonResult.failure(e.getMessage());
         }
         return JsonResult.success();
     }
 
+
+
     /**
-     * 乘客删除
+     * 公司删除
      */
-    @SystemLog(value = "乘客删除")
+    @SystemLog(value = "公司删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id, ModelMap map) {
         try {
-            passengerService.delete(id);
+            companyService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.failure(e.getMessage());
         }
         return JsonResult.success();
     }
+
 
 }

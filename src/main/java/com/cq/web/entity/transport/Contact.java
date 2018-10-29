@@ -1,17 +1,18 @@
 package com.cq.web.entity.transport;
 
-import com.cq.web.entity.BaseEntity;
+
+
 
 import javax.persistence.*;
 
 /**
- * 乘客
  * @Author Celine Q
- * @Create 17/10/2018 5:52 PM
+ * @Create 29/10/2018 2:33 PM
  **/
 @Entity
-@Table(name = "t_passenger")
-public class Passenger extends Person {
+@Table(name = "t_contact")
+public class Contact extends Person {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,7 +81,7 @@ public class Passenger extends Person {
 
     @Override
     public String toString() {
-        return "Passenger{" +
+        return "Contact{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
