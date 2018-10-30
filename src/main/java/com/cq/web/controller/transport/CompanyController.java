@@ -121,5 +121,10 @@ public class CompanyController extends BaseController {
         return JsonResult.success();
     }
 
+    public String addContact(@PathVariable Integer id, ModelMap map) {
+        Company company  = companyService.find(id);
+        map.put("company", company);
+        return "transport/company/addContact";
+    }
 
 }

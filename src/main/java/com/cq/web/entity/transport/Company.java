@@ -32,6 +32,21 @@ public class Company extends BaseEntity {
      */
     private String phone;
 
+    /**
+     * 联系人
+     */
+    @OneToMany
+    @JoinTable(name = "t_company_contact" , joinColumns = {@JoinColumn(name = "company_id")},inverseJoinColumns = {@JoinColumn(name = "contact_id")})
+    private Set<Contact> contacts;
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -64,7 +79,6 @@ public class Company extends BaseEntity {
         this.address = address;
     }
 
-
     @Override
     public String toString() {
         return "Company{" +
@@ -72,6 +86,7 @@ public class Company extends BaseEntity {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", contacts=" + contacts +
                 '}';
     }
 }
