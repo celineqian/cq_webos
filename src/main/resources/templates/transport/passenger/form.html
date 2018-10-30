@@ -41,6 +41,7 @@
                                 <label class="col-md-3 control-label">所属公司</label>
                                 <div class="col-md-9">
                                     <select name="company.id" class="form-control">
+                                        <option value=""></option>
                                         <#list companies as c>
                                         <option value="${c.id}" <#if passenger.company.id == c.id>selected="selected"</#if>> ${c.name} </option>
                                         </#list>

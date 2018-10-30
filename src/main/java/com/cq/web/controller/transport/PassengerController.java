@@ -65,7 +65,7 @@ public class PassengerController extends BaseController {
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        List<Company> companies = companyService.findAll();
+        List<Company> companies = companyService.findAllCompanies();
         map.put("companies" ,  companies);
         return "transport/passenger/add";
     }
@@ -94,7 +94,7 @@ public class PassengerController extends BaseController {
     public String edit(@PathVariable Integer id, ModelMap map) {
         Passenger passenger  = passengerService.find(id);
         map.put("passenger", passenger);
-        List<Company> companies = companyService.findAll();
+        List<Company> companies = companyService.findAllCompanies();
         map.put("companies" ,  companies);
         return "transport/passenger/form";
     }

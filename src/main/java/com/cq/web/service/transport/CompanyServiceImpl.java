@@ -7,6 +7,8 @@ import com.cq.web.service.admin.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author Celine Q
  * @Create 29/10/2018 11:57 AM
@@ -31,6 +33,11 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company, Integer> implem
             update(c);
         }else
             save(company);
+    }
+
+    @Override
+    public List findAllCompanies() {
+        return companyRepository.findAllCompanies();
     }
 }
 

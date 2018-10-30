@@ -29,9 +29,16 @@ public class PassengerServiceImpl extends BaseServiceImpl<Passenger,Integer> imp
             p.setAddress(passenger.getAddress());
             p.setName(passenger.getName());
             p.setPhone(passenger.getPhone());
-            p.setCompany(passenger.getCompany());
+            if(passenger.getCompany().getId()==null)
+                p.setCompany(null);
+            else
+                p.setCompany(passenger.getCompany());
             update(p);
-        }else
-            save(passenger);
+        }else{
+            if(passenger.getCompany().getId()==null){
+                passenger.setCompany(null);
+                save(passenger);
+            }
+        }
     }
 }

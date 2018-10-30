@@ -32,7 +32,6 @@ public class Company extends BaseEntity {
      */
     private String phone;
 
-
     public String getPhone() {
         return phone;
     }
