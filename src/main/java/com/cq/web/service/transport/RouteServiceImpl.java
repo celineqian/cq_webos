@@ -42,8 +42,13 @@ public class RouteServiceImpl extends BaseServiceImpl<Route,Integer> implements 
                     flight = flightRepository.findOne(fId);
                     flights.add(flight);
                 }
-                route.setFlights(flights);
-                update(route);
+                Route r = routeRepository.findOne(route.getId());
+                r.setRemark(route.getRemark());
+                r.setDep(route.getDep());
+                r.setDes(route.getDes());
+                r.setName(route.getName());
+                r.setFlights(flights);
+                update(r);
             }
         } else {
             for (int i = 0; i < ids.length; i++) {

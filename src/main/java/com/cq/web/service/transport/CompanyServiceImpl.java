@@ -1,13 +1,17 @@
 package com.cq.web.service.transport;
 
 import com.cq.web.entity.transport.Company;
+import com.cq.web.entity.transport.Contact;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.transport.CompanyRepository;
+import com.cq.web.repository.transport.ContactRepository;
 import com.cq.web.service.admin.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author Celine Q
@@ -18,6 +22,7 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company, Integer> implem
 
     @Autowired
     private CompanyRepository companyRepository;
+
 
     @Override
     public BaseRepository<Company, Integer> getBaseRespository() {
@@ -39,6 +44,8 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company, Integer> implem
     public List findAllCompanies() {
         return companyRepository.findAllCompanies();
     }
+
+
 }
 
 

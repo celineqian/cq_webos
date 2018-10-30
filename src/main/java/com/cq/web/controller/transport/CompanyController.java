@@ -6,16 +6,16 @@ import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
 import com.cq.web.entity.transport.Company;
+import com.cq.web.entity.transport.Contact;
 import com.cq.web.service.transport.CompanyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 
 /**
@@ -61,6 +61,7 @@ public class CompanyController extends BaseController {
     public String add(ModelMap map) {
         return "transport/company/add";
     }
+
 
     /**
      * 公司添加
@@ -121,10 +122,5 @@ public class CompanyController extends BaseController {
         return JsonResult.success();
     }
 
-    public String addContact(@PathVariable Integer id, ModelMap map) {
-        Company company  = companyService.find(id);
-        map.put("company", company);
-        return "transport/company/addContact";
-    }
 
 }

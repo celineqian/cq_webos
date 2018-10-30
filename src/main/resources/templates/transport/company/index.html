@@ -99,7 +99,6 @@
                     field: "empty",
                     formatter: function (value, row, index) {
                         var operateHtml = '<@shiro.hasPermission name="transport:company:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:company:addContact"><button class="btn btn-danger btn-xs" type="button" onclick="addContact(\''+row.id+'\')">添加联系人</button> &nbsp;</@shiro.hasPermission>';
                         operateHtml = operateHtml + '<@shiro.hasPermission name="transport:company:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
                     }
@@ -107,21 +106,6 @@
         });
     });
 
-
-    function addContact(id){
-        layer.open({
-            type: 2,
-            title: '添加联系人',
-            shadeClose: true,
-            shade: false,
-            area: ['893px', '600px'],
-            content: '${ctxPath}/transport/company/addContact/'+ id,
-            end: function(index){
-                $('#tableList').bootstrapTable("refresh");
-            }
-        });
-    }
-    }
     function edit(id){
         layer.open({
             type: 2,
