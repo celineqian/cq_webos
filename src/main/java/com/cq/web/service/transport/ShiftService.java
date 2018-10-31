@@ -10,4 +10,5 @@ import com.cq.web.service.BaseService;
 public interface ShiftService extends BaseService<Shift,Integer> {
 
     void saveOrUpdate(Shift shift);
+
 }
