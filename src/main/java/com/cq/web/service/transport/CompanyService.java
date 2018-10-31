@@ -1,7 +1,6 @@
 package com.cq.web.service.transport;
 
 import com.cq.web.entity.transport.Company;
-import com.cq.web.entity.transport.Contact;
 import com.cq.web.service.BaseService;
 
 import java.util.List;

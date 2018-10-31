@@ -28,18 +28,18 @@ public class Company extends BaseEntity {
     private String address;
 
     /**
-     * 公司电话
+     * 联系人
+     */
+    private String contact;
+    /**
+     * 联系电话
      */
     private String phone;
 
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -65,13 +65,39 @@ public class Company extends BaseEntity {
         this.address = address;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
                 ", phone='" + phone + '\'' +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

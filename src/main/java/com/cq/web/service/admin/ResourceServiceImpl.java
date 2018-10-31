@@ -5,6 +5,7 @@ import com.cq.web.entity.admin.Role;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.ResourceRepository;
 import com.cq.web.common.ZtreeView;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Sort;

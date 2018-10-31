@@ -3,7 +3,7 @@ package com.cq.web.service.transport;
 import com.cq.web.entity.transport.Flight;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.transport.FlightRepository;
-import com.cq.web.service.admin.BaseServiceImpl;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

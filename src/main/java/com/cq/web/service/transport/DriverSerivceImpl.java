@@ -1,11 +1,16 @@
 package com.cq.web.service.transport;
 
+import com.cq.web.constant.DriverStatus;
 import com.cq.web.entity.transport.Driver;
+import com.cq.web.entity.transport.Shift;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.transport.DriverRepository;
-import com.cq.web.service.admin.BaseServiceImpl;
+import com.cq.web.repository.transport.ShiftRepository;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 /**
  * @Author Celine Q
@@ -38,4 +43,23 @@ public class DriverSerivceImpl extends BaseServiceImpl<Driver,Integer> implement
             save(driver);
 
     }
+
+    @Override
+    public List<Driver> findAvailableDrives() {
+        return driverRepository.findAvailableDrives();
+    }
+
+    @Override
+    public List<Driver> findAllDirvers(Shift shift) {
+        List<Driver> list = driverRepository.findAvailableDrives();
+        if(shift.getId() != null){
+            list.add(shift.getDriver());
+        }
+        //去重复值
+        List drivers = new ArrayList(new HashSet(list));
+        //去空值
+        drivers.removeAll(Collections.singleton(null));
+        return drivers;
+    }
+
 }

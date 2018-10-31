@@ -6,7 +6,6 @@ import com.cq.web.config.specification.SimpleSpecificationBuilder;
 import com.cq.web.config.specification.SpecificationOperator;
 import com.cq.web.controller.BaseController;
 import com.cq.web.entity.transport.Company;
-import com.cq.web.entity.transport.Contact;
 import com.cq.web.service.transport.CompanyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 
 /**

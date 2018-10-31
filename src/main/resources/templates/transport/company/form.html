@@ -24,7 +24,13 @@
                                     <input type="text" class="form-control" name="name" id="name" value="${company.name}"/>
                                 </div>
                             </div>
-							 <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">联系人:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="contact" id="contact" value="${company.contact}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-3 control-label">公司电话:</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="phone" id="phone" value="${company.phone}"/>
@@ -34,6 +40,12 @@
                                 <label class="col-md-3 control-label">地址:</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="address" id="address" value="${company.address}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">备注:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="remark" id="remark" value="${company.remark}"/>
                                 </div>
                             </div>
 							<div class="btn-group pull-right">
@@ -53,6 +65,15 @@
 <script type="text/javascript">
     var jvalidate = $("#jvalidate").validate({
         rules: {
+            name: {
+                required: true
+            },
+            contact: {
+                required: true
+            },
+            phone: {
+                required: true
+            },
             address: {
                 required: true
             }

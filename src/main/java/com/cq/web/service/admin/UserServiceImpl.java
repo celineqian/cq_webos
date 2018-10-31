@@ -8,6 +8,7 @@ import com.cq.web.entity.admin.User;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.admin.RoleRepository;
 import com.cq.web.repository.admin.UserRepository;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;

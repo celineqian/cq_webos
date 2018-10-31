@@ -76,9 +76,9 @@ public class ShiftController extends BaseController {
      */
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     public String add(ModelMap map) {
-        List<Driver> drivers = driverService.findAll();
+        List<Driver> drivers = driverService.findAvailableDrives();
         map.put("drivers" , drivers);
-        List<Vehicle> vehicles = vehicleService.findAll();
+        List<Vehicle> vehicles = vehicleService.findAvailableVehicles();
         map.put("vehicles" , vehicles);
         List<Route> routes = routeService.findAll();
         map.put("routes" , routes);
@@ -108,9 +108,9 @@ public class ShiftController extends BaseController {
     public String edit(@PathVariable Integer id, ModelMap map) {
         Shift shift = shiftService.find(id);
         map.put("shift", shift);
-        List<Driver> drivers = driverService.findAll();
+        List<Driver> drivers = driverService.findAllDirvers(shift);
         map.put("drivers" , drivers);
-        List<Vehicle> vehicles = vehicleService.findAll();
+        List<Vehicle> vehicles = vehicleService.findAllVehicles(shift);
         map.put("vehicles" , vehicles);
         List<Route> routes = routeService.findAll();
         map.put("routes" , routes);

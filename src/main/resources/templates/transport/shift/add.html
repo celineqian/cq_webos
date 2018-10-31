@@ -28,8 +28,9 @@
                                 <label class="col-md-3 control-label">班次司机</label>
                                 <div class="col-md-9">
                                     <select name="driver.id" class="form-control">
+                                        <option value=""></option>
                                         <#list drivers as d>
-                                        <option value="${d.id}" <#if shift.dirver.id == d.id>selected="selected"</#if>> ${d.name} | ${d.phone}</option>
+                                        <option value="${d.id}" <#if shift.driver.id == d.id>selected="selected"</#if>> ${d.name} | ${d.phone}</option>
                                         </#list>
                                     </select>
                                 </div>
@@ -38,6 +39,7 @@
                                 <label class="col-md-3 control-label">班次车辆</label>
                                 <div class="col-md-9">
                                     <select name="vehicle.id" class="form-control">
+                                        <option value=""></option>
                                         <#list vehicles as v>
                                         <option value="${v.id}" <#if shift.vehicle.id == v.id>selected="selected"</#if>> ${v.plate} | ${v.seater}</option>
                                         </#list>

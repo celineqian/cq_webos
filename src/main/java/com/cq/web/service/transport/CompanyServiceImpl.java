@@ -1,17 +1,13 @@
 package com.cq.web.service.transport;
 
 import com.cq.web.entity.transport.Company;
-import com.cq.web.entity.transport.Contact;
 import com.cq.web.repository.BaseRepository;
 import com.cq.web.repository.transport.CompanyRepository;
-import com.cq.web.repository.transport.ContactRepository;
-import com.cq.web.service.admin.BaseServiceImpl;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @Author Celine Q
@@ -34,6 +30,9 @@ public class CompanyServiceImpl extends BaseServiceImpl<Company, Integer> implem
         if(company.getId() != null){
             Company c = companyRepository.findOne(company.getId());
             c.setName(company.getName());
+            c.setContact(company.getContact());
+            c.setPhone(company.getPhone());
+            c.setRemark(company.getRemark());
             c.setAddress(company.getAddress());
             update(c);
         }else

@@ -1,11 +1,16 @@
 package com.cq.web.service.transport;
 
+import com.cq.web.entity.transport.Driver;
+import com.cq.web.entity.transport.Shift;
 import com.cq.web.entity.transport.Vehicle;
 import com.cq.web.repository.BaseRepository;
+import com.cq.web.repository.transport.ShiftRepository;
 import com.cq.web.repository.transport.VehicleRepository;
-import com.cq.web.service.admin.BaseServiceImpl;
+import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 
 /**
@@ -39,5 +44,23 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Integer> impleme
         }else {
             save(vehicle);
         }
+    }
+
+    @Override
+    public List<Vehicle> findAvailableVehicles() {
+        return vehicleRepository.findAvailableVehicles();
+    }
+
+    @Override
+    public List<Vehicle> findAllVehicles(Shift shift) {
+        List<Vehicle> list = vehicleRepository.findAvailableVehicles();
+        if(shift.getId() != null) {
+            list.add(shift.getVehicle());
+        }
+        // 去重复值
+        List vehicles = new ArrayList(new HashSet(list));
+        // 去空值
+        vehicles.removeAll(Collections.singleton(null));
+        return vehicles;
     }
 }

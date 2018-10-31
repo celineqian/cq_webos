@@ -1,4 +1,4 @@
-package com.cq.web.service.admin;
+package com.cq.web.service;
 
 import com.cq.web.entity.BaseEntity;
 import com.cq.web.repository.BaseRepository;
