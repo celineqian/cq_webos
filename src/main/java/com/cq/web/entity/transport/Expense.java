@@ -27,6 +27,7 @@ public class Expense extends BaseEntity {
      */
     private Float value;
 
+
     public Integer getId() {
         return id;
     }

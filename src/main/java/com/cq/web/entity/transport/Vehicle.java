@@ -57,6 +57,7 @@ public class Vehicle extends BaseEntity {
      */
     private Integer status;
 
+
     public Integer getId() {
         return id;
     }
