@@ -15,7 +15,7 @@ import java.util.Set;
  * Created by Celine on 30/06/2017.
  */
 @Entity
-@Table(name = "t_role")
+@Table(name = "sys_role")
 public class Role extends BaseEntity {
 
     /**
@@ -63,7 +63,7 @@ public class Role extends BaseEntity {
 
 
     @ManyToMany(cascade = {CascadeType.REFRESH} , fetch = FetchType.LAZY)
-    @JoinTable(name = "t_role_resource", joinColumns ={@JoinColumn(name = "role_id")},inverseJoinColumns = {@JoinColumn(name = "resource_id")})
+    @JoinTable(name = "sys_role_resource", joinColumns ={@JoinColumn(name = "role_id")},inverseJoinColumns = {@JoinColumn(name = "resource_id")})
     private Set<Resource> resources;
 
 

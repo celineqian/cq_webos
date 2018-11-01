@@ -10,7 +10,7 @@ import java.util.Date;
  * @Create 5/10/2018 9:48 AM
  **/
 @Entity
-@Table(name = "t_operationlog")
+@Table(name = "sys_operationlog")
 public class OperationLog extends BaseEntity {
 
     /**

@@ -133,12 +133,4 @@ public class ShiftController extends BaseController {
         return JsonResult.success();
     }
 
-    /**
-     * 添加乘客跳转
-     */
-    public String addPassenger(@PathVariable Integer id, ModelMap map){
-        Shift shift = shiftService.find(id);
-        map.put("shift",shift);
-        return "transport/shift/addP";
-    }
 }

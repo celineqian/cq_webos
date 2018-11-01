@@ -14,7 +14,7 @@ import java.util.Date;
  * @create: 2018-09-25 18:56
  **/
 @Entity
-@Table(name = "t_notice")
+@Table(name = "sys_notice")
 public class Notice extends BaseEntity {
 
     /**

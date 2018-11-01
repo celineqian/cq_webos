@@ -10,7 +10,7 @@ import java.util.Date;
  * @Create 3/10/2018 11:20 AM
  **/
 @Entity
-@Table(name="t_loginlog")
+@Table(name="sys_loginlog")
 public class LoginLog extends BaseEntity {
 
     /**

@@ -42,11 +42,11 @@ public class ShiftServiceImpl extends BaseServiceImpl<Shift,Integer> implements 
             Shift s = shiftRepository.findOne(shift.getId());
             // 更新班次司机为空
             if(shift.getDriver().getId() == null){
-                // 数据库本就为空,直接赋值
+                // 数据库本就为空,直接设空值
                 if(s.getDriver() == null)
                     s.setDriver(null);
-                // 数据库本不为空，设为空，并更新关联司机状态为OK
                 else{
+                    // 数据库本不为空，设为空，并更新关联司机状态为OK
                     Driver d = driverRepository.findOne(s.getDriver().getId());
                     d.setStatus(DriverStatus.OK.getCode());
                     driverRepository.saveAndFlush(d);
@@ -71,22 +71,29 @@ public class ShiftServiceImpl extends BaseServiceImpl<Shift,Integer> implements 
                     driverRepository.saveAndFlush(newDriver);
                 }
             }
+            // 更新车辆记录
             if(shift.getVehicle().getId() == null){
+                // 更新车辆记录为空
                 if(s.getVehicle() == null)
+                    //数据库本为空，直接设空值
                     s.setVehicle(null);
                 else{
+                    // 数据库本不为空，设为空，并更新关联车辆状态为OK
                     Vehicle v = vehicleRepository.findOne(s.getVehicle().getId());
                     v.setStatus(VehicleStatus.OK.getCode());
                     vehicleRepository.saveAndFlush(v);
                     s.setVehicle(null);
                 }
+                // 更新车辆信息不为空
             } else{
+                // 数据库本为空，赋值，修改车辆状态为USING
                 if(s.getVehicle() == null){
                     s.setVehicle(shift.getVehicle());
                     Vehicle v = vehicleRepository.findOne(shift.getVehicle().getId());
                     v.setStatus(VehicleStatus.USING.getCode());
                     vehicleRepository.saveAndFlush(v);
                 }else{
+                    //数据库本不为空，赋值，分别修改车辆状态
                     Vehicle newV = vehicleRepository.findOne(shift.getVehicle().getId());
                     Vehicle dbV = vehicleRepository.findOne(s.getVehicle().getId());
                     s.setVehicle(shift.getVehicle());
@@ -96,7 +103,10 @@ public class ShiftServiceImpl extends BaseServiceImpl<Shift,Integer> implements 
                     vehicleRepository.save(newV);
                 }
             }
-            s.setRoute(shift.getRoute());
+            if(shift.getRoute().getId() == null)
+                s.setRoute(null);
+            else
+                s.setRoute(shift.getRoute());
             s.setShiftDate(shift.getShiftDate());
             s.setStatus(shift.getStatus());
             s.setPassengers(shift.getPassengers());

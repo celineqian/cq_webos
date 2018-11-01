@@ -50,6 +50,7 @@
                                 <label class="col-md-3 control-label">班次行程</label>
                                 <div class="col-md-9">
                                     <select name="route.id" class="form-control">
+                                        <option value=""></option>
                                         <#list routes as r>
                                         <option value="${r.id}" <#if shift.route.id == r.id>selected="selected"</#if>> ${r.name}: ${r.dep} - ${r.des}</option>
                                         </#list>

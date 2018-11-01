@@ -118,7 +118,6 @@
                     field: "empty",
                     formatter: function (value, row, index) {
                         var operateHtml = '<@shiro.hasPermission name="transport:shift:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')">编辑</button> &nbsp;</@shiro.hasPermission>';
-                        operateHtml = operateHtml + '<@shiro.hasPermission name="transport:shift:addPassenger"><button class="btn btn-info btn-xs" type="button" onclick="addP(\''+row.id+'\')">添加乘客</button> &nbsp;</@shiro.hasPermission>';
                         operateHtml = operateHtml + '<@shiro.hasPermission name="transport:shift:settle"><button class="btn btn-warning btn-xs" type="button" onclick="settle(\''+row.id+'\')">结算</button> &nbsp;</@shiro.hasPermission>';
                         operateHtml = operateHtml + '<@shiro.hasPermission name="transport:shift:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')">删除</button> &nbsp;</@shiro.hasPermission>';
                         return operateHtml;
@@ -127,19 +126,7 @@
         });
     });
 
-    function addP(){
-        layer.open({
-            type: 2,
-            title: '添加乘客',
-            shadeClose: true,
-            shade: false,
-            area: ['893px', '600px'],
-            content: '${ctxPath!}/transport/shift/addPassenger',
-            end: function(index){
-                $('#tableList').bootstrapTable("refresh");
-            }
-        });
-    }
+
     function settle(){
 
     }

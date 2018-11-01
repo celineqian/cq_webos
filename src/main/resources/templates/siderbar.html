@@ -10,9 +10,10 @@
         <li>
             <a href="${ctxPath!}/admin/index"><span class="fa fa-home"></span> <span class="xn-text"><@spring.message "Home"/></span></a>
         </li>
+        <@shiro.hasPermission name="system:system:index">
         <li class="xn-openable">
             <a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text"><@spring.message "System"/></span></a>
-        <ul>
+            <ul>
                 <@shiro.hasPermission name="system:user:index">
                 <li><a href="${ctxPath!}/admin/user/index"><span class="fa fa-user"></span><@spring.message "UserM"/></a></li>
                 </@shiro.hasPermission>
@@ -33,6 +34,8 @@
                 </@shiro.hasPermission>
            </ul>
         </li>
+        </@shiro.hasPermission>
+        <@shiro.hasPermission name="system:transport:index">
         <li class="xn-openable">
             <a href="#"><span class="fa fa-truck"></span> <span class="xn-text"><@spring.message "Transport"/></span></a>
             <ul>
@@ -59,6 +62,7 @@
                 </@shiro.hasPermission>
             </ul>
         </li>
+        </@shiro.hasPermission>
     </ul>
 <!-- END X-NAVIGATION -->
 </div>

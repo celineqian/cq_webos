@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by Celine on 30/06/2017.
  */
 @Entity
-@Table(name = "t_resource")
+@Table(name = "sys_resource")
 public class  Resource extends BaseEntity {
 
 
