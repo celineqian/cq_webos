@@ -4,6 +4,7 @@ import com.cq.web.entity.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 车辆保养
@@ -11,7 +12,7 @@ import java.util.Date;
  * @Create 1/11/2018 4:35 PM
  **/
 @Entity
-@Table(name = "t_service")
+@Table(name = "t_maintenance")
 public class Maintenance extends BaseEntity {
 
     @Id
@@ -32,7 +33,7 @@ public class Maintenance extends BaseEntity {
      * 花费
      */
     @OneToMany
-    private Expense expense;
+    private Set<Expense> expenses;
 
     public Integer getId() {
         return id;
@@ -58,12 +59,12 @@ public class Maintenance extends BaseEntity {
         this.serviceDate = serviceDate;
     }
 
-    public Expense getExpense() {
-        return expense;
+    public Set<Expense> getExpenses() {
+        return expenses;
     }
 
-    public void setExpense(Expense expense) {
-        this.expense = expense;
+    public void setExpenses(Set<Expense> expenses) {
+        this.expenses = expenses;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class Maintenance extends BaseEntity {
                 "id=" + id +
                 ", detail='" + detail + '\'' +
                 ", serviceDate=" + serviceDate +
-                ", expense=" + expense +
+                ", expenses=" + expenses +
                 '}';
     }
 }
