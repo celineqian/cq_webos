@@ -60,6 +60,9 @@
                 <@shiro.hasPermission name="transport:company:index">
                 <li><a href="${ctxPath!}/transport/company/index"><span class="fa fa-building"></span><@spring.message "CompanyM"/></a></li>
                 </@shiro.hasPermission>
+                <@shiro.hasPermission name="transport:servicerecord:index">
+                <li><a href="${ctxPath!}/transport/servicerecord/index"><span class="fa fa-wrench"></span><@spring.message "ServicerecordM"/></a></li>
+                </@shiro.hasPermission>
             </ul>
         </li>
         </@shiro.hasPermission>

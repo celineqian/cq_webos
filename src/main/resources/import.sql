@@ -91,6 +91,12 @@ INSERT INTO sys_resource VALUES
 (52,'2018-10-29 11:21:54','公司编辑',NULL,0,4,'公司编辑',2,'transport:company:edit','/transport/company/edit',2,'2018-10-29 14:12:31',50),
 (53,'2018-10-29 11:21:54','公司删除',NULL,0,4,'公司删除',3,'transport:company:delete','/transport/company/delete',2,'2018-10-29 14:12:31',50),
 
+(54,'2018-11-02 11:21:54','保养记录管理',NULL,0,3,'保养记录管理',1,'transport:servicerecord:index','/transport/servicerecord/index',1,'2018-11-02 14:12:31',NULL),
+(55,'2018-11-02 11:21:54','保养记录添加',NULL,0,4,'保养记录添加',1,'transport:servicerecord:add','/transport/servicerecord/add',2,'2018-11-02 14:12:31',54),
+(56,'2018-11-02 11:21:54','保养记录编辑',NULL,0,4,'保养记录编辑',2,'transport:servicerecord:edit','/transport/servicerecord/edit',2,'2018-11-02 14:12:31',54),
+(57,'2018-11-02 11:21:54','保养记录删除',NULL,0,4,'保养记录删除',3,'transport:servicerecord:delete','/transport/servicerecord/delete',2,'2018-11-02 14:12:31',54),
+
+
 
 -- ----------------------------
 -- Records of sys_user_role
