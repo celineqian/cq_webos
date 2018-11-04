@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * @Author Celine Q
@@ -42,7 +41,9 @@ public class VehicleController extends BaseController {
      */
     @RequestMapping(value = { "/list" })
     @ResponseBody
-    public Page<Vehicle> list(){
+    public Page<Vehicle> list(@RequestParam("plate") String plate, @RequestParam("serviceDate")Date serviceDate){
+        String plateNo = plate;
+        Date sDate = serviceDate;
         SimpleSpecificationBuilder<Vehicle> builder = new SimpleSpecificationBuilder<Vehicle>();
         String searchText = super.getHttpServletRequest().getParameter("searchText");
         if(StringUtils.isNotBlank(searchText)){
