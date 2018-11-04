@@ -40,7 +40,13 @@ public class ServiceRecordServiceImpl extends BaseServiceImpl<ServiceRecord,Inte
             sr.setExpense(serviceRecord.getExpense());
             sr.setRemark(serviceRecord.getRemark());
             update(sr);
-        }else
+        }else{
+            if(serviceRecord.getDriver().getId() == null)
+                serviceRecord.setDriver(null);
+            if(serviceRecord.getVehicle().getId() == null)
+                serviceRecord.setVehicle(null);
             save(serviceRecord);
+        }
+
     }
 }
