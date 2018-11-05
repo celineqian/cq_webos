@@ -41,13 +41,15 @@ public class VehicleController extends BaseController {
      */
     @RequestMapping(value = { "/list" })
     @ResponseBody
-    public Page<Vehicle> list(@RequestParam("plate") String plate, @RequestParam("serviceDate")Date serviceDate){
-        String plateNo = plate;
-        Date sDate = serviceDate;
+    public Page<Vehicle> list(){
         SimpleSpecificationBuilder<Vehicle> builder = new SimpleSpecificationBuilder<Vehicle>();
-        String searchText = super.getHttpServletRequest().getParameter("searchText");
-        if(StringUtils.isNotBlank(searchText)){
-            builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
+        String plate = super.getHttpServletRequest().getParameter("plate");
+        String serviceDate = super.getHttpServletRequest().getParameter("serviceDate");
+        if(StringUtils.isNotBlank(serviceDate)){
+            builder.add("serviceDate", SpecificationOperator.Operator.likeAll.name(), serviceDate);
+        }
+        if(StringUtils.isNotBlank(plate)){
+            builder.add("plate", SpecificationOperator.Operator.likeAll.name(),plate);
         }
         Page<Vehicle> page = vehicleService.findAll(builder.generateSpecification(),getPageRequest());
         return page;
