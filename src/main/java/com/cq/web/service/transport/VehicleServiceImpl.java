@@ -1,10 +1,8 @@
 package com.cq.web.service.transport;
 
-import com.cq.web.entity.transport.Driver;
 import com.cq.web.entity.transport.Shift;
 import com.cq.web.entity.transport.Vehicle;
 import com.cq.web.repository.BaseRepository;
-import com.cq.web.repository.transport.ShiftRepository;
 import com.cq.web.repository.transport.VehicleRepository;
 import com.cq.web.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Integer> impleme
             v.setServiceDate(vehicle.getServiceDate());
             v.setPhoto(vehicle.getPhoto());
             v.setSeater(vehicle.getSeater());
-            v.setType(vehicle.getType());
+            v.setModel(vehicle.getModel());
             v.setPlate(vehicle.getPlate());
             v.setRemark(vehicle.getRemark());
             v.setStatus(vehicle.getStatus());

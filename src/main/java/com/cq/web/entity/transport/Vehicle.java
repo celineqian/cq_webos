@@ -21,7 +21,7 @@ public class Vehicle extends BaseEntity {
     /**
      * 型号
      */
-    private String type;
+    private String model;
 
     /**
      * 座位数
@@ -57,7 +57,6 @@ public class Vehicle extends BaseEntity {
      */
     private Integer status;
 
-
     public Integer getId() {
         return id;
     }
@@ -66,12 +65,12 @@ public class Vehicle extends BaseEntity {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getModel() {
+        return model;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public Integer getSeater() {
@@ -134,7 +133,7 @@ public class Vehicle extends BaseEntity {
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
-                ", type='" + type + '\'' +
+                ", model='" + model + '\'' +
                 ", seater=" + seater +
                 ", plate='" + plate + '\'' +
                 ", serviceDate=" + serviceDate +

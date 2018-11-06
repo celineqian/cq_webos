@@ -44,9 +44,9 @@ public class VehicleController extends BaseController {
     public Page<Vehicle> list(){
         SimpleSpecificationBuilder<Vehicle> builder = new SimpleSpecificationBuilder<Vehicle>();
         String plate = super.getHttpServletRequest().getParameter("plate");
-        String serviceDate = super.getHttpServletRequest().getParameter("serviceDate");
-        if(StringUtils.isNotBlank(serviceDate)){
-            builder.add("serviceDate", SpecificationOperator.Operator.likeAll.name(), serviceDate);
+        String model = super.getHttpServletRequest().getParameter("model");
+        if(StringUtils.isNotBlank(model)){
+            builder.add("model", SpecificationOperator.Operator.likeAll.name(), model);
         }
         if(StringUtils.isNotBlank(plate)){
             builder.add("plate", SpecificationOperator.Operator.likeAll.name(),plate);

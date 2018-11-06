@@ -36,6 +36,16 @@
                     </div>
                 </div>
             </div>
+            <div class="panel-body form-inline">
+                <div class="form-group">
+                    <label class="control-label">保养时间范围：</label>
+                    <input id="beginTime" type="text" class="form-control datepicker" placeholder="从什么时间">
+                    <input id="endTime" type="text" class="form-control datepicker" placeholder="到什么时间">
+                </div>
+
+                <button id="search" type="button" class="btn btn-primary">搜索</button>
+                <button id="reset" type="button" class="btn btn-default">重置</button>
+            </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -139,6 +149,21 @@
             }
         });
     }
+
+    $(function () {
+
+        $('#search').click(function () {
+            var beginTime = $('#beginTime').val();
+            var endTime = $('#endTime').val();
+            $('#tableList').bootstrapTable('refresh', { url: "${ctxPath}/transport/servicerecord/list?beginTime=" + beginTime +"$endTime=" + endTime });
+        });
+
+        $('#reset').click(function() {
+            $('#beginTime').val('');
+            $('#endTime').val('');
+            $('#tableList').bootstrapTable('refresh', { url: "${ctxPath}/transport/servicerecord/list" });
+        });
+    });
 </script>
 </body>
 </html>

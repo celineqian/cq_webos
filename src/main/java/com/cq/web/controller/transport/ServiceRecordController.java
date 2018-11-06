@@ -56,9 +56,15 @@ public class ServiceRecordController extends BaseController {
     @ResponseBody
     public Page<ServiceRecord> list(){
         SimpleSpecificationBuilder<ServiceRecord> builder = new SimpleSpecificationBuilder<ServiceRecord>();
-        String searchText = super.getHttpServletRequest().getParameter("searchText");
-        if(StringUtils.isNotBlank(searchText)){
-            builder.add("name", SpecificationOperator.Operator.likeAll.name(), searchText);
+        String beginTime = super.getHttpServletRequest().getParameter("beginTime");
+        String endTime = super.getHttpServletRequest().getParameter("endTime");
+
+        if(StringUtils.isNotBlank(beginTime)){
+
+            builder.add("serviceDate", SpecificationOperator.Operator.gt.name(), beginTime);
+        }
+        if(StringUtils.isNotBlank(endTime)){
+            builder.add("serviceDate", SpecificationOperator.Operator.lt.name(), endTime);
         }
         Page<ServiceRecord> page = serviceRecordService.findAll(builder.generateSpecification(),getPageRequest());
         return page;
